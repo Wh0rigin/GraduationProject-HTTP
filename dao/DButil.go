@@ -8,7 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-func InitDB() *gorm.DB {
+var myDB *gorm.DB
+
+func InitDB() {
 	host := "localhost"
 	port := "3306"
 	database := "graduation"
@@ -30,13 +32,17 @@ func InitDB() *gorm.DB {
 	}
 	//new table that is auto generate
 	db.AutoMigrate(&bean.User{})
-	return db
+	myDB = db
 }
 
-func CloseDb(db *gorm.DB) {
-	sqldb, err := db.DB()
+func CloseDb() {
+	sqldb, err := myDB.DB()
 	if err != nil {
 		panic("fail to close the Mysql")
 	}
 	sqldb.Close()
+}
+
+func GetDb() *gorm.DB {
+	return myDB
 }
