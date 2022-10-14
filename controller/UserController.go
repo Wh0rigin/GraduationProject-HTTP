@@ -7,6 +7,7 @@ import (
 	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
+	"github.com/Wh0rigin/GraduationProject/dto"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -33,7 +34,7 @@ func LoginControler(ctx *gin.Context) {
 		return
 	}
 
-	user, err := dao.GetUser(dao.GetDb(), account)
+	user, err := dao.GetUserByAccount(dao.GetDb(), account)
 	if err != nil {
 		ctx.JSON(
 			http.StatusUnprocessableEntity,
@@ -126,4 +127,15 @@ func ResiterControler(ctx *gin.Context) {
 		"name":      user.Name,
 		"telephone": user.Telephone,
 	})
+}
+
+func Info(ctx *gin.Context) {
+	user, _ := ctx.Get("user")
+	ctx.JSON(http.StatusOK,
+		gin.H{
+			"code": 200,
+			"data": gin.H{
+				"user": dto.NewUserDto(user.(bean.User)),
+			},
+		})
 }

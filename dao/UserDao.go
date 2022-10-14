@@ -11,7 +11,7 @@ func AddUser(db *gorm.DB, user *bean.User) {
 	db.Create(user)
 }
 
-func GetUser(db *gorm.DB, account string) (*bean.User, error) {
+func GetUserByAccount(db *gorm.DB, account string) (*bean.User, error) {
 	var user bean.User
 	db.Where("telephone=?", account).First(&user)
 	if user.ID != 0 {
@@ -27,4 +27,9 @@ func IsTelephoneExist(db *gorm.DB, telephone string) bool {
 		return true
 	}
 	return false
+}
+
+func GetUserById(db *gorm.DB, user bean.User, uid uint) bean.User {
+	db.First(&user, uid)
+	return user
 }
