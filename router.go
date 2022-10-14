@@ -6,6 +6,8 @@ import (
 )
 
 func CollectRoute(r *gin.Engine) *gin.Engine {
+
 	r.POST("/api/auth/register", controller.ResiterControler)
+	r.POST("/api/auth/login", controller.LoginControler)
 	return r
 }
