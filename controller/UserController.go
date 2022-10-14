@@ -2,140 +2,81 @@ package controller
 
 import (
 	"net/http"
-	"time"
 
 	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
 	"github.com/Wh0rigin/GraduationProject/dto"
+	"github.com/Wh0rigin/GraduationProject/response"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
 
-func LoginControler(ctx *gin.Context) {
+func LoginController(ctx *gin.Context) {
 	account := ctx.PostForm("account")
 	password := ctx.PostForm("password")
 	if len(account) != 11 {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "账号(电话号码)长度不正确",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "电话长度必须为11位")
 		return
 	}
 	if len(password) < 6 {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "密码长度不够",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "密码长度必须大于6位")
 		return
 	}
 
 	user, err := dao.GetUserByAccount(dao.GetDb(), account)
 	if err != nil {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "账号错误",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "账号错误")
 		return
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "密码错误",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "密码错误")
 		return
 	}
 
 	token, err := common.ReleaseToken(user)
 	if err != nil {
-		ctx.JSON(
-			http.StatusInternalServerError,
-			gin.H{
-				"code": 500, "msg": "Token生成错误",
-			},
-		)
+		response.Response(ctx, http.StatusInternalServerError, 500, gin.H{}, "Token生成失败")
 		return
 	}
-	ctx.JSON(http.StatusOK, gin.H{
-		"code":      200,
-		"msg":       "登录成功",
-		"username":  user.Name,
-		"ResultObj": gin.H{"AccessToken": token},
-		"dateTime":  time.Now().String()[:19],
-	})
-
+	response.Response(ctx, http.StatusOK, 200,
+		gin.H{
+			"username":    user.Name,
+			"AccessToken": token,
+		}, "登录成功")
 }
 
-func ResiterControler(ctx *gin.Context) {
+func ResiterController(ctx *gin.Context) {
 	name := ctx.PostForm("name")
 	telephone := ctx.PostForm("telephone")
 	password := ctx.PostForm("password")
 	if len(telephone) != 11 {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "电话长度不对",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "电话长度必须为11位")
 		return
 	}
 	if len(password) < 6 {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "密码长度不够",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "密码长度必须大于6位")
 		return
 	}
 	if dao.IsTelephoneExist(dao.GetDb(), telephone) {
-		ctx.JSON(
-			http.StatusUnprocessableEntity,
-			gin.H{
-				"code": 422, "msg": "电话已存在",
-			},
-		)
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "电话号码已存在")
 		return
 	}
 
 	hashedpassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 	if err != nil {
-		ctx.JSON(
-			http.StatusInternalServerError,
-			gin.H{
-				"code": 500, "msg": "密码加密出错",
-			},
-		)
+		response.Response(ctx, http.StatusInternalServerError, 500, gin.H{}, "密码加密失败")
 		return
 	}
-	var user *bean.User = bean.NewUser(name, telephone, string(hashedpassword))
+	var user bean.User = bean.NewUser(name, telephone, string(hashedpassword))
 
-	dao.AddUser(dao.GetDb(), user)
+	dao.AddUser(dao.GetDb(), &user)
 
-	ctx.JSON(200, gin.H{
-		"code":      200,
-		"msg":       "注册成功",
-		"name":      user.Name,
-		"telephone": user.Telephone,
-	})
+	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user)}, "注册成功")
 }
 
-func Info(ctx *gin.Context) {
+func DetailController(ctx *gin.Context) {
 	user, _ := ctx.Get("user")
-	ctx.JSON(http.StatusOK,
-		gin.H{
-			"code": 200,
-			"data": gin.H{
-				"user": dto.NewUserDto(user.(bean.User)),
-			},
-		})
+	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user.(bean.User))}, "查询成功")
 }

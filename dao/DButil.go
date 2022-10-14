@@ -33,6 +33,7 @@ func InitDB() {
 	}
 	//new table that is auto generate
 	db.AutoMigrate(&bean.User{})
+	db.AutoMigrate(&bean.Book{})
 	myDB = db
 }
 

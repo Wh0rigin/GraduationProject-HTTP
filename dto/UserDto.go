@@ -13,3 +13,10 @@ func NewUserDto(user bean.User) *UserDto {
 		Telephone: user.Telephone,
 	}
 }
+
+// func NewUserDto(user *bean.User) *UserDt {
+// 	return &UserDo{
+// 		Name:      user.Nae,
+// 		Telephone: user.Telephoe,
+//	}
+// }

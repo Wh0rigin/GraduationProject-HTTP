@@ -12,11 +12,21 @@ type User struct {
 }
 
 //constructor
-func NewUser(n string, t string, p string) *User {
+func NewUserReference(name string, telephone string, password string) *User {
 	return &User{
-		Name:      n,
-		Telephone: t,
-		Password:  p,
+		Name:      name,
+		Telephone: telephone,
+		Password:  password,
+		Version:   1,
+		IsDestory: false,
+	}
+}
+
+func NewUser(name string, telephone string, password string) User {
+	return User{
+		Name:      name,
+		Telephone: telephone,
+		Password:  password,
 		Version:   1,
 		IsDestory: false,
 	}

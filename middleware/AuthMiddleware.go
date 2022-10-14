@@ -7,6 +7,7 @@ import (
 	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
+	"github.com/Wh0rigin/GraduationProject/response"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,7 +16,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		tokenString := ctx.GetHeader("Authorization")
 
 		if tokenString == "" || !strings.HasPrefix(tokenString, "Bearer") {
-			ctx.JSON(http.StatusUnauthorized, gin.H{"code": 401, "msg": "权限不足"})
+			response.Response(ctx, http.StatusUnauthorized, 401, gin.H{}, "权限不足")
 			ctx.Abort()
 			return
 		}
@@ -23,7 +24,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		tokenString = tokenString[7:]
 		token, claims, err := common.ParseToken(tokenString)
 		if err != nil || !token.Valid {
-			ctx.JSON(http.StatusUnauthorized, gin.H{"code": 401, "msg": "权限不足"})
+			response.Response(ctx, http.StatusUnauthorized, 401, gin.H{}, "权限不足")
 			ctx.Abort()
 			return
 		}
@@ -33,7 +34,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		var user bean.User
 		user = dao.GetUserById(DB, user, uid)
 
-		if user.ID == 0 {
+		if &user != nil && user.ID == 0 {
 			ctx.JSON(http.StatusUnauthorized, gin.H{"code": 401, "msg": "权限不足"})
 			ctx.Abort()
 			return

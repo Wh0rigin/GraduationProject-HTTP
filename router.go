@@ -8,8 +8,9 @@ import (
 
 func CollectRoute(r *gin.Engine) *gin.Engine {
 
-	r.POST("/api/auth/register", controller.ResiterControler)
-	r.POST("/api/auth/login", controller.LoginControler)
-	r.GET("api/auth/info", middleware.AuthMiddleware(), controller.Info)
+	r.POST("/api/auth/register", controller.ResiterController)
+	r.POST("/api/auth/login", controller.LoginController)
+	r.GET("/api/auth/detail", middleware.AuthMiddleware(), controller.DetailController)
+	r.POST("/api/book/create", middleware.AuthMiddleware(), controller.CreateBookController)
 	return r
 }
