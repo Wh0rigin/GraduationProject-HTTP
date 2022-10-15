@@ -9,7 +9,7 @@ type BookDto struct {
 	AvailableNumber uint   `Json:"availableNumber"` //	availableNumber
 }
 
-func NewBookDtos(book bean.Book) *BookDto {
+func NewBookDto(book bean.Book) *BookDto {
 	return &BookDto{
 		Name:            book.Name,
 		Isbn:            book.Isbn,
@@ -18,11 +18,19 @@ func NewBookDtos(book bean.Book) *BookDto {
 	}
 }
 
-func NewBookDtosByReference(book *bean.Book) *BookDto {
+func NewBookDtoByReference(book *bean.Book) *BookDto {
 	return &BookDto{
 		Name:            book.Name,
 		Isbn:            book.Isbn,
 		Number:          book.Number,
 		AvailableNumber: book.Number - book.RentNumber,
 	}
+}
+
+func NewBookDtosByArray(books []bean.Book) (bookDtos []BookDto) {
+	bookDtos = make([]BookDto, len(books))
+	for i := 0; i < len(books); i++ {
+		bookDtos[i] = *NewBookDto(books[i])
+	}
+	return bookDtos
 }

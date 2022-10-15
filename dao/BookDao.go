@@ -11,6 +11,15 @@ func CreateBook(db *gorm.DB, book *bean.Book) {
 	db.Create(book)
 }
 
+func DeletetBook(db *gorm.DB, isbn string) error {
+	book, err := GetBookByIsbn(db, isbn)
+	if err != nil {
+		return err
+	}
+	db.Delete(book)
+	return err
+}
+
 func IsIsbnExist(db *gorm.DB, isbn string) bool {
 	var book bean.Book
 	db.Where("isbn = ?", isbn).First(&book)
@@ -51,4 +60,15 @@ func UpdateBook(db *gorm.DB, book *bean.Book) error {
 	book.Version += 1
 	db.Save(book)
 	return nil
+}
+
+func GetAllBook(db *gorm.DB) (book []bean.Book) {
+	db.Find(&book)
+	return book
+}
+
+// select book by hazy isbn
+func SeleteBook(db *gorm.DB, isbn string) (book []bean.Book) {
+	db.Where("isbn like ?", isbn+"%").Find(&book)
+	return book
 }

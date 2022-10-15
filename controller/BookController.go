@@ -1,11 +1,13 @@
 package controller
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
 	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/dao"
+	"github.com/Wh0rigin/GraduationProject/dto"
 	"github.com/Wh0rigin/GraduationProject/response"
 	"github.com/gin-gonic/gin"
 )
@@ -54,6 +56,21 @@ func CreateBookController(ctx *gin.Context) {
 	dao.CreateBook(db, book)
 
 	response.Response(ctx, http.StatusOK, 200, gin.H{}, "书本录入成功")
+}
+
+/*
+param:
+
+	isbn
+*/
+func DeleteBookController(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	err := dao.DeletetBook(dao.GetDb(), isbn)
+	if err != nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "不存在的书籍信息")
+		return
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "删除成功")
 }
 
 /*
@@ -197,5 +214,29 @@ func ReturnBookController(ctx *gin.Context) {
 }
 
 func AllBookController(ctx *gin.Context) {
+	books := dao.GetAllBook(dao.GetDb())
+	if books == nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "查询书籍时发生意外错误")
+		return
+	}
+	bookDtos := dto.NewBookDtosByArray(books)
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"payload": bookDtos,
+		"count":   len(bookDtos),
+	}, "书籍查询成功")
+}
 
+func SelectBookController(ctx *gin.Context) {
+	isbn := ctx.Param("isbn")
+	fmt.Println("isbn:", isbn)
+	books := dao.SeleteBook(dao.GetDb(), isbn)
+	if books == nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "查询书籍时发生意外错误")
+		return
+	}
+	bookDtos := dto.NewBookDtosByArray(books)
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"payload": bookDtos,
+		"count":   len(bookDtos),
+	}, "书籍查询成功")
 }
