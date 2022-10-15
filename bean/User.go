@@ -8,7 +8,6 @@ type User struct {
 	Telephone string // `gorm:"type:varchar(11);not null"`
 	Password  string //`gorm:"type:size:255;not null"`
 	Version   int    //`gorm:"type:Integer;not null"`
-	IsDestory bool   // `gorm:"type:BOOLEAN;not null"`
 }
 
 //constructor
@@ -18,7 +17,6 @@ func NewUserReference(name string, telephone string, password string) *User {
 		Telephone: telephone,
 		Password:  password,
 		Version:   1,
-		IsDestory: false,
 	}
 }
 
@@ -28,7 +26,6 @@ func NewUser(name string, telephone string, password string) User {
 		Telephone: telephone,
 		Password:  password,
 		Version:   1,
-		IsDestory: false,
 	}
 }
 

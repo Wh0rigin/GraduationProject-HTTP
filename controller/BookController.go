@@ -40,12 +40,7 @@ func CreateBookController(ctx *gin.Context) {
 		return
 	}
 
-	if rentNumber < 0 {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "数量不能为负数")
-		return
-	}
-
-	if number < 0 {
+	if rentNumber < 0 || number < 0 {
 		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "数量不能为负数")
 		return
 	}
@@ -68,10 +63,30 @@ param:
 	isbn
 	number of addition
 */
-func AddBook(ctx *gin.Context) {
+func AddBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
-	addition := ctx.PostForm("number")
-
+	addition, err := strconv.Atoi(ctx.PostForm("number"))
+	if err != nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		return
+	}
+	for {
+		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		if err != nil {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+		book.Number += uint(addition)
+		uerr := dao.UpdateBook(dao.GetDb(), book)
+		if uerr == nil {
+			break
+		}
+		if uerr.Error() == "dml:null value" {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "添加成功")
 }
 
 /*
@@ -80,10 +95,34 @@ param:
 isbn
 reduceBook
 */
-func ReduceBook(ctx *gin.Context) {
+func ReduceBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
-	reduce := ctx.PostForm("reduceBook")
-
+	reduce, err := strconv.Atoi(ctx.PostForm("number"))
+	if err != nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		return
+	}
+	for {
+		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		if err != nil {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+		if reduce > int(book.Number) {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍存量不能为负")
+			return
+		}
+		book.Number -= uint(reduce)
+		uerr := dao.UpdateBook(dao.GetDb(), book)
+		if uerr == nil {
+			break
+		}
+		if uerr.Error() == "dml:null value" {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "移除成功")
 }
 
 /*
@@ -92,18 +131,18 @@ param:
 isbn
 rentNumber
 */
-func RentBook(ctx *gin.Context) {
-	isbn := ctx.PostForm("isbn")
-	rentBook := ctx.PostForm("rentNumber")
+// func RentBookController(ctx *gin.Context) {
+// 	isbn := ctx.PostForm("isbn")
+// 	rentBook := ctx.PostForm("rentNumber")
 
-}
+// }
 
 /*
 *
 isbn
 returnNumber
 */
-func ReturnBook(ctx *gin.Context) {
-	isbn := ctx.PostForm("isbn")
-	returnBook := ctx.PostForm("returnNumber")
-}
+// func ReturnBookController(ctx *gin.Context) {
+// 	isbn := ctx.PostForm("isbn")
+// 	returnBook := ctx.PostForm("returnNumber")
+// }
