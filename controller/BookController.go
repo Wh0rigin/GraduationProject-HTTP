@@ -60,3 +60,50 @@ func CreateBookController(ctx *gin.Context) {
 
 	response.Response(ctx, http.StatusOK, 200, gin.H{}, "书本录入成功")
 }
+
+/*
+*
+param:
+
+	isbn
+	number of addition
+*/
+func AddBook(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	addition := ctx.PostForm("number")
+
+}
+
+/*
+*
+param:
+isbn
+reduceBook
+*/
+func ReduceBook(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	reduce := ctx.PostForm("reduceBook")
+
+}
+
+/*
+*
+param:
+isbn
+rentNumber
+*/
+func RentBook(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	rentBook := ctx.PostForm("rentNumber")
+
+}
+
+/*
+*
+isbn
+returnNumber
+*/
+func ReturnBook(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	returnBook := ctx.PostForm("returnNumber")
+}
