@@ -23,12 +23,13 @@ engin = None
 
 with open(yamlPath,'rb') as f:
     data = list(yaml.safe_load_all(f))
-    HOSTNAME = data['datasource']['host']
-    PORT = data['datasource']['port']
-    DATABASE = data['datasource']['database']
-    USERNAME = data['datasource']['username']
-    PASSWORD = data['datasource']['password']
-    CHATSET = data['datasource']['charset']
+    print(data[0])
+    HOSTNAME = data[0]['datasource']['host']
+    PORT = data[0]['datasource']['port']
+    DATABASE = data[0]['datasource']['database']
+    USERNAME = data[0]['datasource']['username']
+    PASSWORD = data[0]['datasource']['password']
+    CHATSET = data[0]['datasource']['charset']
     db_url = 'mysql+pymysql://{}:{}@{}:{}/{}?charset={}'.format(
         USERNAME,
         PASSWORD,
@@ -38,7 +39,6 @@ with open(yamlPath,'rb') as f:
         CHATSET,
     )
     engin = create_engine(db_url)
-Base = declarative_base(engin)
 
 def getData(*arg):
     url = "http://api.nlecloud.com/Users/Login"
@@ -50,19 +50,22 @@ def getData(*arg):
     ret = requests.post(url,data)
     json_dict = json.loads(ret.text)
     #print(json_dict)
-    Session = sessionmaker(engin)
-    session = Session()
+    
     while(True):
+        Session = sessionmaker(engin)
+        session = Session()
         temp = getSensor(arg[2],'temperature',json_dict['ResultObj']['AccessToken'])
         humi = getSensor(arg[2],'humidity', json_dict['ResultObj']['AccessToken'])
-        print("get new temperature data:"+temp['value']+",time:"+temp['time'])
-        print("get new humidity data:"+humi['value']+",time:"+humi['time'])
+        print("get new temperature data:"+str(temp['value'])+",time:"+temp['time'])
+        print("get new humidity data:"+str(humi['value'])+",time:"+humi['time'])
         session.add_all(
             [
-                Sensor_data(created_at=temp['time'],updated_at=temp['time'],sensor_type='temperature',value=temp['value'])
+                Sensor_data(created_at=temp['time'],updated_at=temp['time'],sensor_type='temperature',value=temp['value']),
+                Sensor_data(created_at=humi['time'],updated_at=humi['time'],sensor_type='humidity',value=humi['value'])
             ]
         )
-        time.sleep(5)
+        session.commit()
+        time.sleep(10)
 
 
 def getSensor(deviceId:str,tag:str,token:str)->dict:
