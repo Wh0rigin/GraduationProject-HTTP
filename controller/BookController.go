@@ -131,18 +131,71 @@ param:
 isbn
 rentNumber
 */
-// func RentBookController(ctx *gin.Context) {
-// 	isbn := ctx.PostForm("isbn")
-// 	rentBook := ctx.PostForm("rentNumber")
-
-// }
+func RentBookController(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	addition, err := strconv.Atoi(ctx.PostForm("number"))
+	if err != nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		return
+	}
+	for {
+		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		if err != nil {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+		book.RentNumber += uint(addition)
+		if book.RentNumber > book.Number {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "借出书籍不能大于馆内图书数")
+			return
+		}
+		uerr := dao.UpdateBook(dao.GetDb(), book)
+		if uerr == nil {
+			break
+		}
+		if uerr.Error() == "dml:null value" {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "租出成功")
+}
 
 /*
 *
 isbn
 returnNumber
 */
-// func ReturnBookController(ctx *gin.Context) {
-// 	isbn := ctx.PostForm("isbn")
-// 	returnBook := ctx.PostForm("returnNumber")
-// }
+func ReturnBookController(ctx *gin.Context) {
+	isbn := ctx.PostForm("isbn")
+	reduce, err := strconv.Atoi(ctx.PostForm("number"))
+	if err != nil {
+		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		return
+	}
+	for {
+		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		if err != nil {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+		if reduce > int(book.Number) {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "借出书籍不能为负")
+			return
+		}
+		book.RentNumber -= uint(reduce)
+		uerr := dao.UpdateBook(dao.GetDb(), book)
+		if uerr == nil {
+			break
+		}
+		if uerr.Error() == "dml:null value" {
+			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			return
+		}
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "移除成功")
+}
+
+func AllBookController(ctx *gin.Context) {
+
+}
