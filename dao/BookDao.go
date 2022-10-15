@@ -3,11 +3,11 @@ package dao
 import (
 	"errors"
 
-	"github.com/Wh0rigin/GraduationProject/bean"
+	"github.com/Wh0rigin/GraduationProject/po"
 	"gorm.io/gorm"
 )
 
-func CreateBook(db *gorm.DB, book *bean.Book) {
+func CreateBook(db *gorm.DB, book *po.Book) {
 	db.Create(book)
 }
 
@@ -21,7 +21,7 @@ func DeletetBook(db *gorm.DB, isbn string) error {
 }
 
 func IsIsbnExist(db *gorm.DB, isbn string) bool {
-	var book bean.Book
+	var book po.Book
 	db.Where("isbn = ?", isbn).First(&book)
 	if book.ID != 0 {
 		return true
@@ -29,8 +29,8 @@ func IsIsbnExist(db *gorm.DB, isbn string) bool {
 	return false
 }
 
-func GetBookByIsbn(db *gorm.DB, isbn string) (*bean.Book, error) {
-	var book bean.Book
+func GetBookByIsbn(db *gorm.DB, isbn string) (*po.Book, error) {
+	var book po.Book
 	db.Where("isbn=?", isbn).First(&book)
 	if book.ID != 0 {
 		return &book, nil
@@ -38,8 +38,8 @@ func GetBookByIsbn(db *gorm.DB, isbn string) (*bean.Book, error) {
 	return nil, errors.New("dml:null value")
 }
 
-func GetBookByID(db *gorm.DB, id uint) (*bean.Book, error) {
-	var book bean.Book
+func GetBookByID(db *gorm.DB, id uint) (*po.Book, error) {
+	var book po.Book
 	db.Where("ID=?", id).First(&book)
 	if book.ID != 0 {
 		return &book, nil
@@ -47,7 +47,7 @@ func GetBookByID(db *gorm.DB, id uint) (*bean.Book, error) {
 	return nil, errors.New("dml:null value")
 }
 
-func UpdateBook(db *gorm.DB, book *bean.Book) error {
+func UpdateBook(db *gorm.DB, book *po.Book) error {
 	nowBook, err := GetBookByID(GetDb(), book.ID)
 	if err != nil {
 		return err
@@ -62,13 +62,13 @@ func UpdateBook(db *gorm.DB, book *bean.Book) error {
 	return nil
 }
 
-func GetAllBook(db *gorm.DB) (book []bean.Book) {
+func GetAllBook(db *gorm.DB) (book []po.Book) {
 	db.Find(&book)
 	return book
 }
 
 // select book by hazy isbn
-func SeleteBook(db *gorm.DB, isbn string) (book []bean.Book) {
+func SeleteBook(db *gorm.DB, isbn string) (book []po.Book) {
 	db.Where("isbn like ?", isbn+"%").Find(&book)
 	return book
 }

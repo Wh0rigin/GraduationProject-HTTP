@@ -1,20 +1,20 @@
 package dto
 
-import "github.com/Wh0rigin/GraduationProject/bean"
+import "github.com/Wh0rigin/GraduationProject/po"
 
 type UserDto struct {
 	Name      string `Json:"name"`
 	Telephone string `Json:"telephone"`
 }
 
-func NewUserDto(user bean.User) *UserDto {
+func NewUserDto(user po.User) *UserDto {
 	return &UserDto{
 		Name:      user.Name,
 		Telephone: user.Telephone,
 	}
 }
 
-func NewUserDtoByReference(user *bean.User) *UserDto {
+func NewUserDtoByReference(user *po.User) *UserDto {
 	return &UserDto{
 		Name:      user.Name,
 		Telephone: user.Telephone,

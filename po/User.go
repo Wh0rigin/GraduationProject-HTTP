@@ -1,4 +1,4 @@
-package bean
+package po
 
 import "gorm.io/gorm"
 

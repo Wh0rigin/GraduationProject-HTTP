@@ -3,10 +3,10 @@ package controller
 import (
 	"net/http"
 
-	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
 	"github.com/Wh0rigin/GraduationProject/dto"
+	"github.com/Wh0rigin/GraduationProject/po"
 	"github.com/Wh0rigin/GraduationProject/response"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
@@ -69,7 +69,7 @@ func ResiterController(ctx *gin.Context) {
 		response.Response(ctx, http.StatusInternalServerError, 500, gin.H{}, "密码加密失败")
 		return
 	}
-	var user bean.User = bean.NewUser(name, telephone, string(hashedpassword))
+	var user po.User = po.NewUser(name, telephone, string(hashedpassword))
 
 	dao.AddUser(dao.GetDb(), &user)
 
@@ -78,5 +78,5 @@ func ResiterController(ctx *gin.Context) {
 
 func DetailController(ctx *gin.Context) {
 	user, _ := ctx.Get("user")
-	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user.(bean.User))}, "查询成功")
+	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user.(po.User))}, "查询成功")
 }

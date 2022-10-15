@@ -3,7 +3,7 @@ package dao
 import (
 	"fmt"
 
-	"github.com/Wh0rigin/GraduationProject/bean"
+	"github.com/Wh0rigin/GraduationProject/po"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -32,8 +32,8 @@ func InitDB() {
 		panic("failed to connect database,err:" + err.Error())
 	}
 	//new table that is auto generate
-	db.AutoMigrate(&bean.User{})
-	db.AutoMigrate(&bean.Book{})
+	db.AutoMigrate(&po.User{})
+	db.AutoMigrate(&po.Book{})
 	myDB = db
 }
 

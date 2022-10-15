@@ -1,6 +1,6 @@
 package dto
 
-import "github.com/Wh0rigin/GraduationProject/bean"
+import "github.com/Wh0rigin/GraduationProject/po"
 
 type BookDto struct {
 	Name            string `Json:"name"`
@@ -9,7 +9,7 @@ type BookDto struct {
 	AvailableNumber uint   `Json:"availableNumber"` //	availableNumber
 }
 
-func NewBookDto(book bean.Book) *BookDto {
+func NewBookDto(book po.Book) *BookDto {
 	return &BookDto{
 		Name:            book.Name,
 		Isbn:            book.Isbn,
@@ -18,7 +18,7 @@ func NewBookDto(book bean.Book) *BookDto {
 	}
 }
 
-func NewBookDtoByReference(book *bean.Book) *BookDto {
+func NewBookDtoByReference(book *po.Book) *BookDto {
 	return &BookDto{
 		Name:            book.Name,
 		Isbn:            book.Isbn,
@@ -27,7 +27,7 @@ func NewBookDtoByReference(book *bean.Book) *BookDto {
 	}
 }
 
-func NewBookDtosByArray(books []bean.Book) (bookDtos []BookDto) {
+func NewBookDtosByArray(books []po.Book) (bookDtos []BookDto) {
 	bookDtos = make([]BookDto, len(books))
 	for i := 0; i < len(books); i++ {
 		bookDtos[i] = *NewBookDto(books[i])

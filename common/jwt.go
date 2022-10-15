@@ -3,7 +3,7 @@ package common
 import (
 	"time"
 
-	"github.com/Wh0rigin/GraduationProject/bean"
+	"github.com/Wh0rigin/GraduationProject/po"
 	"github.com/dgrijalva/jwt-go"
 )
 
@@ -14,7 +14,7 @@ type Claims struct {
 	jwt.StandardClaims
 }
 
-func ReleaseToken(user *bean.User) (string, error) {
+func ReleaseToken(user *po.User) (string, error) {
 	expirationTime := time.Now().Add(7 * 24 * time.Hour)
 	claims := &Claims{
 		UserId: user.ID,

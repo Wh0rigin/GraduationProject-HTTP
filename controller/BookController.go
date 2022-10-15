@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/dao"
 	"github.com/Wh0rigin/GraduationProject/dto"
+	"github.com/Wh0rigin/GraduationProject/po"
 	"github.com/Wh0rigin/GraduationProject/response"
 	"github.com/gin-gonic/gin"
 )
@@ -52,7 +52,7 @@ func CreateBookController(ctx *gin.Context) {
 		return
 	}
 
-	book := bean.NewBookReference(name, isbn, uint(number), uint(rentNumber))
+	book := po.NewBookReference(name, isbn, uint(number), uint(rentNumber))
 	dao.CreateBook(db, book)
 
 	response.Response(ctx, http.StatusOK, 200, gin.H{}, "书本录入成功")

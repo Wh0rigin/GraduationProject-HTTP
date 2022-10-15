@@ -4,9 +4,9 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/Wh0rigin/GraduationProject/bean"
 	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
+	"github.com/Wh0rigin/GraduationProject/po"
 	"github.com/Wh0rigin/GraduationProject/response"
 	"github.com/gin-gonic/gin"
 )
@@ -31,7 +31,7 @@ func AuthMiddleware() gin.HandlerFunc {
 
 		uid := claims.UserId
 		DB := dao.GetDb()
-		var user bean.User
+		var user po.User
 		user = dao.GetUserById(DB, user, uid)
 
 		if &user != nil && user.ID == 0 {
