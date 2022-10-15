@@ -62,13 +62,13 @@ func UpdateBook(db *gorm.DB, book *po.Book) error {
 	return nil
 }
 
-func GetAllBook(db *gorm.DB) (book []po.Book) {
-	db.Find(&book)
-	return book
+func GetAllBook(db *gorm.DB) (books []po.Book) {
+	db.Find(&books)
+	return books
 }
 
 // select book by hazy isbn
-func SeleteBook(db *gorm.DB, isbn string) (book []po.Book) {
-	db.Where("isbn like ?", isbn+"%").Find(&book)
-	return book
+func SeleteBook(db *gorm.DB, isbn string) (books []po.Book) {
+	db.Where("isbn like ?", isbn+"%").Find(&books)
+	return books
 }

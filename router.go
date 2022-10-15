@@ -6,9 +6,8 @@ import (
 )
 
 func CollectRoute(r *gin.Engine) *gin.Engine {
-
 	router.AuthRouther(r)
 	router.BookRouter(r)
-
+	router.SensorRouter(r)
 	return r
 }
