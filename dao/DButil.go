@@ -34,6 +34,7 @@ func InitDB() {
 	//new table that is auto generate
 	db.AutoMigrate(&po.User{})
 	db.AutoMigrate(&po.Book{})
+	db.AutoMigrate(&po.SensorData{})
 	myDB = db
 }
 
