@@ -42,7 +42,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/response.ResponseJson"
+                            "$ref": "#/definitions/response.ResponseJsons"
                         }
                     },
                     "442": {
@@ -205,7 +205,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/response.ResponseJson"
+                            "$ref": "#/definitions/response.ResponseJsons"
                         }
                     },
                     "442": {
@@ -257,7 +257,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/response.ResponseJson"
+                            "$ref": "#/definitions/response.ResponseJsons"
                         }
                     },
                     "442": {
@@ -277,6 +277,21 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "response.ResponseArrayJson": {
+            "type": "object",
+            "properties": {
+                "count": {
+                    "type": "integer"
+                },
+                "payload": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": true
+                    }
+                }
+            }
+        },
         "response.ResponseJson": {
             "type": "object",
             "properties": {
@@ -286,6 +301,20 @@ const docTemplate = `{
                 "data": {
                     "type": "object",
                     "additionalProperties": true
+                },
+                "msg": {
+                    "type": "string"
+                }
+            }
+        },
+        "response.ResponseJsons": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "data": {
+                    "$ref": "#/definitions/response.ResponseArrayJson"
                 },
                 "msg": {
                     "type": "string"

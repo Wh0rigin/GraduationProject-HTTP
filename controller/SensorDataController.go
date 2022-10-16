@@ -17,7 +17,7 @@ import (
 // @Accept       json
 // @Produce      json
 // @Param        type     path    string  true  "temperature"
-// @Success      200  {object} response.ResponseJson
+// @Success      200  {object} response.ResponseJsons
 // @Failure      442  {object} response.ResponseJson
 // @Failure      500  {object} response.ResponseJson
 // @Router       /api/sensor/all/{type} [GET]
@@ -39,7 +39,7 @@ func AllSensorDataController(ctx *gin.Context) {
 // @Produce      json
 // @Param        type     path    string  true  "temperature"
 // @Param        limit     path    int  true   "Number"  Format(int64)
-// @Success      200  {object} response.ResponseJson
+// @Success      200  {object} response.ResponseJsons
 // @Failure      442  {object} response.ResponseJson
 // @Failure      500  {object} response.ResponseJson
 // @Router       /api/sensor/recent/{type}/{limit} [GET]

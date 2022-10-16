@@ -1,5 +1,15 @@
 basePath: /
 definitions:
+  response.ResponseArrayJson:
+    properties:
+      count:
+        type: integer
+      payload:
+        items:
+          additionalProperties: true
+          type: object
+        type: array
+    type: object
   response.ResponseJson:
     properties:
       code:
@@ -7,6 +17,15 @@ definitions:
       data:
         additionalProperties: true
         type: object
+      msg:
+        type: string
+    type: object
+  response.ResponseJsons:
+    properties:
+      code:
+        type: integer
+      data:
+        $ref: '#/definitions/response.ResponseArrayJson'
       msg:
         type: string
     type: object
@@ -35,7 +54,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/response.ResponseJson'
+            $ref: '#/definitions/response.ResponseJsons'
         "442":
           description: ""
           schema:
@@ -142,7 +161,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/response.ResponseJson'
+            $ref: '#/definitions/response.ResponseJsons'
         "442":
           description: ""
           schema:
@@ -177,7 +196,7 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/response.ResponseJson'
+            $ref: '#/definitions/response.ResponseJsons'
         "442":
           description: ""
           schema:

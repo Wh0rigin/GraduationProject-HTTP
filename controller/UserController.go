@@ -107,7 +107,7 @@ func ResiterController(ctx *gin.Context) {
 // @Tags         /api/auth
 // @Accept       json
 // @Produce      json
-// @Success      200  {object} response.ResponseJson
+// @Success      200  {object} response.ResponseJsons
 // @Failure      442  {object} response.ResponseJson
 // @Failure      500  {object} response.ResponseJson
 // @Router       /api/auth/datail [GET]

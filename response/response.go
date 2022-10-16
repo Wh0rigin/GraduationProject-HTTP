@@ -10,6 +10,17 @@ type ResponseJson struct {
 	Msg  string
 }
 
+type ResponseJsons struct {
+	Code int
+	Data ResponseArrayJson
+	Msg  string
+}
+
+type ResponseArrayJson struct {
+	Payload []map[string]interface{}
+	Count   int
+}
+
 // union json form
 func Response(ctx *gin.Context, httpStatus int, code int, data gin.H, msg string) {
 	ctx.JSON(httpStatus, gin.H{
