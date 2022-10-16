@@ -10,6 +10,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// AllSensor godoc
+// @Summary      Get all Sensor Data
+// @Description  get all sensor data by list
+// @Tags         /api/sensor/
+// @Accept       json
+// @Produce      json
+// @Param        type     path    string  true  "temperature"
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/sensor/all/{type} [GET]
 func AllSensorDataController(ctx *gin.Context) {
 	stype := ctx.Param("type")
 	datas := dao.GetAllSensorDataByType(dao.GetDb(), stype)
@@ -20,6 +31,18 @@ func AllSensorDataController(ctx *gin.Context) {
 	}, "数据查询成功")
 }
 
+// RecentSensor godoc
+// @Summary      Get recent Sensor Data
+// @Description  get recent sensor data by list
+// @Tags         /api/sensor/
+// @Accept       json
+// @Produce      json
+// @Param        type     path    string  true  "temperature"
+// @Param        limit     path    int  true   "Number"  Format(int64)
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/sensor/recent/{type}/{limit} [GET]
 func RecentSensorDataController(ctx *gin.Context) {
 	stype := ctx.Param("type")
 	limit, err := strconv.Atoi(ctx.Param("limit"))

@@ -12,6 +12,18 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
+// Login godoc
+// @Summary      Login an account
+// @Description  login account by account and password return AccessToken
+// @Tags         /api/auth
+// @Accept       json
+// @Produce      json
+// @Param        account     body    string  true  "Account Telephone"
+// @Param        password    body    string  true  "Account password"
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/auth/login [POST]
 func LoginController(ctx *gin.Context) {
 	account := ctx.PostForm("account")
 	password := ctx.PostForm("password")
@@ -47,6 +59,19 @@ func LoginController(ctx *gin.Context) {
 		}, "登录成功")
 }
 
+// Resiter godoc
+// @Summary      Resiter an account
+// @Description  create account by account and password
+// @Tags         /api/auth
+// @Accept       json
+// @Produce      json
+// @Param        name     body    string  true  "Account Name"
+// @Param        account     body    string  true  "Account Telephone"
+// @Param        password    body    string  true  "Account password"
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/auth/resiter [POST]
 func ResiterController(ctx *gin.Context) {
 	name := ctx.PostForm("name")
 	telephone := ctx.PostForm("telephone")
@@ -76,6 +101,16 @@ func ResiterController(ctx *gin.Context) {
 	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user)}, "注册成功")
 }
 
+// Resiter godoc
+// @Summary      Resiter an account
+// @Description  create account by account and password
+// @Tags         /api/auth
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/auth/datail [GET]
 func DetailController(ctx *gin.Context) {
 	user, _ := ctx.Get("user")
 	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user.(po.User))}, "查询成功")

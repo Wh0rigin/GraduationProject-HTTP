@@ -12,15 +12,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-/*
-*
-param:
-
-	name string
-	isbn string
-	number uint
-	rentNumber uint
-*/
 func CreateBookController(ctx *gin.Context) {
 	db := dao.GetDb()
 	name := ctx.PostForm("name")

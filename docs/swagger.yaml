@@ -1,0 +1,192 @@
+basePath: /
+definitions:
+  response.ResponseJson:
+    properties:
+      code:
+        type: integer
+      data:
+        additionalProperties: true
+        type: object
+      msg:
+        type: string
+    type: object
+host: petstore.swagger.io
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server Petstore server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Libary
+  version: "1.0"
+paths:
+  /api/auth/datail:
+    get:
+      consumes:
+      - application/json
+      description: create account by account and password
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Resiter an account
+      tags:
+      - /api/auth
+  /api/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: login account by account and password return AccessToken
+      parameters:
+      - description: Account Telephone
+        in: body
+        name: account
+        required: true
+        schema:
+          type: string
+      - description: Account password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Login an account
+      tags:
+      - /api/auth
+  /api/auth/resiter:
+    post:
+      consumes:
+      - application/json
+      description: create account by account and password
+      parameters:
+      - description: Account Name
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: Account Telephone
+        in: body
+        name: account
+        required: true
+        schema:
+          type: string
+      - description: Account password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Resiter an account
+      tags:
+      - /api/auth
+  /api/sensor/all/{type}:
+    get:
+      consumes:
+      - application/json
+      description: get all sensor data by list
+      parameters:
+      - description: temperature
+        in: path
+        name: type
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Get all Sensor Data
+      tags:
+      - /api/sensor/
+  /api/sensor/recent/{type}/{limit}:
+    get:
+      consumes:
+      - application/json
+      description: get recent sensor data by list
+      parameters:
+      - description: temperature
+        in: path
+        name: type
+        required: true
+        type: string
+      - description: Number
+        format: int64
+        in: path
+        name: limit
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Get recent Sensor Data
+      tags:
+      - /api/sensor/
+swagger: "2.0"
