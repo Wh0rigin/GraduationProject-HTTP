@@ -50,6 +50,11 @@
 # used frame
 gin
 gorm
+swagger
 
 sqlalchemy
+
+
+## API
+http://localhost:8080/swagger/index.html
 
