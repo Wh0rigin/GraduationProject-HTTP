@@ -1,7 +1,9 @@
 package main
 
 import (
+	"io"
 	"os"
+	"time"
 
 	dao "github.com/Wh0rigin/GraduationProject/dao"
 	_ "github.com/Wh0rigin/GraduationProject/docs"
@@ -27,7 +29,15 @@ import (
 func main() {
 	InitConifg()
 	dao.InitDB()
+
+	// go func() {
+	// 	for {
+	// 		//TODO get newland
+	// 	}
+	// }()
+
 	defer dao.CloseDb()
+
 	r := gin.Default()
 	r.Use(middleware.CorsMiddleware())
 	r = CollectRoute(r)
@@ -47,4 +57,7 @@ func InitConifg() {
 	if err != nil {
 		panic(err)
 	}
+	dateTime := time.Now().Format("2006_01_02_15_04_05")
+	f, _ := os.Create("./log/startin" + dateTime + ".log")
+	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
 }
