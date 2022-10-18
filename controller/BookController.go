@@ -18,28 +18,28 @@ func CreateBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
 	number, err := strconv.Atoi(ctx.PostForm("number"))
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "数量必须为数字")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "数量必须为数字")
 		return
 	}
 
 	rentNumber, err := strconv.Atoi(ctx.PostForm("rentNumber"))
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "数量必须为数字")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "数量必须为数字")
 		return
 	}
 
 	if name == "" {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "名称不能为空")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "名称不能为空")
 		return
 	}
 
 	if rentNumber < 0 || number < 0 {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "数量不能为负数")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "数量不能为负数")
 		return
 	}
 
 	if dao.IsIsbnExist(db, isbn) {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍已存在")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍已存在")
 		return
 	}
 
@@ -58,7 +58,7 @@ func DeleteBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
 	err := dao.DeletetBook(dao.GetDb(), isbn)
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "不存在的书籍信息")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "不存在的书籍信息")
 		return
 	}
 	response.Response(ctx, http.StatusOK, 200, gin.H{}, "删除成功")
@@ -75,13 +75,13 @@ func AddBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
 	addition, err := strconv.Atoi(ctx.PostForm("number"))
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "isbn必须为数字")
 		return
 	}
 	for {
 		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
 		if err != nil {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 		book.Number += uint(addition)
@@ -90,7 +90,7 @@ func AddBookController(ctx *gin.Context) {
 			break
 		}
 		if uerr.Error() == "dml:null value" {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 	}

@@ -47,7 +47,7 @@ func RecentSensorDataController(ctx *gin.Context) {
 	stype := ctx.Param("type")
 	limit, err := strconv.Atoi(ctx.Param("limit"))
 	if err != nil || limit <= 0 {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "最新数据限制必须为数字且大于0")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "最新数据限制必须为数字且大于0")
 		return
 	}
 	datas := dao.GetRecentSensorDataWithType(dao.GetDb(), stype, limit)
