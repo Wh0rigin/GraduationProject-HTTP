@@ -61,8 +61,8 @@ func LoginController(ctx *gin.Context) {
 		}, "登录成功")
 }
 
-// Resiter godoc
-// @Summary      Resiter an account
+// register godoc
+// @Summary      register an account
 // @Description  create account by account and password
 // @Tags         /api/auth
 // @Accept       json
@@ -73,8 +73,8 @@ func LoginController(ctx *gin.Context) {
 // @Success      200  {object} response.ResponseJson
 // @Failure      442  {object} response.ResponseJson
 // @Failure      500  {object} response.ResponseJson
-// @Router       /api/auth/resiter [POST]
-func ResiterController(ctx *gin.Context) {
+// @Router       /api/auth/register [POST]
+func RegisterController(ctx *gin.Context) {
 	name := ctx.PostForm("name")
 	telephone := ctx.PostForm("telephone")
 	password := ctx.PostForm("password")

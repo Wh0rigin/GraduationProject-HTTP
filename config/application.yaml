@@ -7,3 +7,7 @@ datasource:
   username: root
   password: 123456
   charset: utf8
+nlecloud:
+  username: 18042409089
+  password: 123456
+  deviceId: 566636

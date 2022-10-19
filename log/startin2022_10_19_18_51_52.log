@@ -1,0 +1,25 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.RegisterController (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (4 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (5 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (5 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (5 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (5 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (5 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (5 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (5 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (5 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (5 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (5 handlers)
+[GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (5 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/19 - 18:52:25 | 200 |     147.685ms |             ::1 | POST     "/api/actuator/control"

@@ -50,21 +50,25 @@ def getData(*arg):
     ret = requests.post(url,data)
     json_dict = json.loads(ret.text)
     #print(json_dict)
-    
+    buffer_time = ""
     while(True):
         Session = sessionmaker(engin)
         session = Session()
         temp = getSensor(arg[2],'temperature',json_dict['ResultObj']['AccessToken'])
         humi = getSensor(arg[2],'humidity', json_dict['ResultObj']['AccessToken'])
-        print("get new temperature data:"+str(temp['value'])+",time:"+temp['time'])
-        print("get new humidity data:"+str(humi['value'])+",time:"+humi['time'])
-        session.add_all(
-            [
-                Sensor_data(created_at=temp['time'],updated_at=temp['time'],sensor_type='temperature',value=temp['value']),
-                Sensor_data(created_at=humi['time'],updated_at=humi['time'],sensor_type='humidity',value=humi['value'])
-            ]
-        )
-        session.commit()
+        lamp = getSensor(arg[2],'lamp', json_dict['ResultObj']['AccessToken'])
+        if buffer_time != temp["time"]:
+            print("get new temperature data:"+str(temp['value'])+",time:"+temp['time'])
+            print("get new humidity data:"+str(humi['value'])+",time:"+humi['time'])
+            session.add_all(
+                [
+                    Sensor_data(created_at=temp['time'],updated_at=temp['time'],sensor_type='temperature',value=temp['value']),
+                    Sensor_data(created_at=humi['time'],updated_at=humi['time'],sensor_type='humidity',value=humi['value']),
+                    Sensor_data(created_at=humi['time'],updated_at=humi['time'],sensor_type='lamp',value=lamp['value'])
+                ]
+            )
+            session.commit()
+            buffer_time = temp["time"]
         time.sleep(10)
 
 

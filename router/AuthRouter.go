@@ -8,7 +8,7 @@ import (
 
 func AuthRouther(r *gin.Engine) {
 	//auth
-	r.POST("/api/auth/register", controller.ResiterController)
+	r.POST("/api/auth/register", controller.RegisterController)
 	//use telephone
 	r.POST("/api/auth/login", controller.LoginController)
 	r.GET("/api/auth/detail", middleware.AuthMiddleware(), controller.DetailController)

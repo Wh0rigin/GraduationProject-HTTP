@@ -1,0 +1,36 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.ResiterController (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (4 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (5 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (5 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (5 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (5 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (5 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (5 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (5 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (5 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (4 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (4 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/18 - 23:17:39 | 200 |      14.259ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:20:00 | 200 |     52.3524ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:26:11 | 200 |     53.6586ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:32:42 | 200 |     58.4415ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:36:38 | 200 |     53.8654ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:44:11 | 200 |      6.5949ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:53:49 | 404 |            0s | 192.168.147.127 | POST     "/api/auth/resiter"
+[GIN] 2022/10/18 - 23:55:14 | 200 |      6.4886ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:55:24 | 200 |     79.6076ms | 192.168.147.127 | POST     "/api/auth/register"
+[GIN] 2022/10/18 - 23:55:48 | 200 |     52.2396ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/18 - 23:56:11 | 200 |       2.819ms | 192.168.147.127 | POST     "/api/auth/register"
+[GIN] 2022/10/18 - 23:56:26 | 200 |     51.6074ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/19 - 00:11:01 | 200 |     55.3309ms | 192.168.147.127 | POST     "/api/auth/login"
