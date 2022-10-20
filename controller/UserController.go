@@ -100,7 +100,14 @@ func RegisterController(ctx *gin.Context) {
 
 	dao.AddUser(dao.GetDb(), &user)
 
-	response.Response(ctx, http.StatusOK, 200, gin.H{"user": dto.NewUserDto(user)}, "注册成功")
+	token, err := common.ReleaseToken(&user)
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 500, gin.H{}, "Token生成失败")
+		return
+	}
+
+	response.Response(ctx, http.StatusOK, 200, gin.H{"username": user.Name,
+		"AccessToken": token}, "注册成功")
 }
 
 // Resiter godoc
