@@ -38,6 +38,11 @@ func CreateBookController(ctx *gin.Context) {
 		return
 	}
 
+	if rentNumber > number {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "借出数量不能大于馆内数量")
+		return
+	}
+
 	if dao.IsIsbnExist(db, isbn) {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍已存在")
 		return
@@ -107,17 +112,17 @@ func ReduceBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
 	reduce, err := strconv.Atoi(ctx.PostForm("number"))
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "isbn必须为数字")
 		return
 	}
 	for {
 		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
 		if err != nil {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 		if reduce > int(book.Number) {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍存量不能为负")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍存量不能为负")
 			return
 		}
 		book.Number -= uint(reduce)
@@ -126,7 +131,7 @@ func ReduceBookController(ctx *gin.Context) {
 			break
 		}
 		if uerr.Error() == "dml:null value" {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 	}
@@ -143,18 +148,18 @@ func RentBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
 	addition, err := strconv.Atoi(ctx.PostForm("number"))
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "isbn必须为数字")
 		return
 	}
 	for {
 		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
 		if err != nil {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 		book.RentNumber += uint(addition)
 		if book.RentNumber > book.Number {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "借出书籍不能大于馆内图书数")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "借出书籍不能大于馆内图书数")
 			return
 		}
 		uerr := dao.UpdateBook(dao.GetDb(), book)
@@ -162,7 +167,7 @@ func RentBookController(ctx *gin.Context) {
 			break
 		}
 		if uerr.Error() == "dml:null value" {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 	}
@@ -176,38 +181,39 @@ returnNumber
 */
 func ReturnBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
-	reduce, err := strconv.Atoi(ctx.PostForm("number"))
+	returnNumber, err := strconv.Atoi(ctx.PostForm("number"))
 	if err != nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "isbn必须为数字")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "isbn必须为数字")
 		return
 	}
 	for {
 		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
 		if err != nil {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
-		if reduce > int(book.Number) {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "借出书籍不能为负")
+		if returnNumber+(int(book.Number)-int(book.RentNumber)) > int(book.Number) {
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "归还数量不可多于馆藏数量")
 			return
 		}
-		book.RentNumber -= uint(reduce)
+
+		book.RentNumber -= uint(returnNumber)
 		uerr := dao.UpdateBook(dao.GetDb(), book)
 		if uerr == nil {
 			break
 		}
 		if uerr.Error() == "dml:null value" {
-			response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "书籍不存在")
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 	}
-	response.Response(ctx, http.StatusOK, 200, gin.H{}, "移除成功")
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "归还成功")
 }
 
 func AllBookController(ctx *gin.Context) {
 	books := dao.GetAllBook(dao.GetDb())
 	if books == nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "查询书籍时发生意外错误")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
 		return
 	}
 	bookDtos := dto.NewBookDtosByArray(books)
@@ -222,7 +228,7 @@ func SelectBookController(ctx *gin.Context) {
 	fmt.Println("isbn:", isbn)
 	books := dao.SeleteBook(dao.GetDb(), isbn)
 	if books == nil {
-		response.Response(ctx, http.StatusUnprocessableEntity, 422, gin.H{}, "查询书籍时发生意外错误")
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
 		return
 	}
 	bookDtos := dto.NewBookDtosByArray(books)
