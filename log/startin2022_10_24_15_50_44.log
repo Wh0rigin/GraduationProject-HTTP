@@ -22,4 +22,20 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
-[GIN] 2022/10/19 - 17:40:26 | 200 |    118.9771ms |             ::1 | POST     "/api/actuator/control"
+[GIN] 2022/10/24 - 15:53:18 | 200 |     68.6498ms | 192.168.147.127 | POST     "/api/auth/register"
+[GIN] 2022/10/24 - 15:53:26 | 200 |       788.2µs | 192.168.147.127 | GET      "/api/book/all"
+[GIN] 2022/10/24 - 15:53:32 | 200 |      4.2317ms | 192.168.147.127 | GET      "/api/sensor/recent/temperature/1"
+[GIN] 2022/10/24 - 15:53:32 | 200 |      4.3543ms | 192.168.147.127 | GET      "/api/sensor/recent/lamp/1"
+[GIN] 2022/10/24 - 15:53:37 | 200 |         586µs | 192.168.147.127 | GET      "/api/sensor/recent/lamp/1"
+[GIN] 2022/10/24 - 15:53:37 | 200 |      1.1438ms | 192.168.147.127 | GET      "/api/sensor/recent/temperature/1"
+[GIN] 2022/10/24 - 15:53:42 | 200 |       1.104ms | 192.168.147.127 | GET      "/api/sensor/recent/lamp/1"
+[GIN] 2022/10/24 - 15:53:42 | 200 |      1.0801ms | 192.168.147.127 | GET      "/api/sensor/recent/temperature/1"
+[GIN] 2022/10/24 - 15:53:47 | 200 |      1.4063ms | 192.168.147.127 | GET      "/api/sensor/recent/lamp/1"
+[GIN] 2022/10/24 - 15:53:47 | 200 |      1.1019ms | 192.168.147.127 | GET      "/api/sensor/recent/temperature/1"
+[GIN] 2022/10/24 - 15:53:52 | 200 |      1.6759ms | 192.168.147.127 | GET      "/api/sensor/recent/lamp/1"
+[GIN] 2022/10/24 - 15:53:52 | 200 |       910.9µs | 192.168.147.127 | GET      "/api/sensor/recent/temperature/1"
+[GIN] 2022/10/24 - 15:53:57 | 200 |      1.0166ms | 192.168.147.127 | GET      "/api/sensor/recent/lamp/1"
+[GIN] 2022/10/24 - 15:53:57 | 200 |      1.1104ms | 192.168.147.127 | GET      "/api/sensor/recent/temperature/1"
+[GIN] 2022/10/24 - 15:54:02 | 200 |      1.0902ms | 192.168.147.127 | POST     "/api/auth/login"
+[GIN] 2022/10/24 - 15:54:09 | 200 |     58.5127ms | 192.168.147.127 | POST     "/api/auth/register"
+[GIN] 2022/10/24 - 15:54:30 | 200 |      1.1027ms | 192.168.147.127 | GET      "/api/book/all"

@@ -12,6 +12,7 @@ func CollectRoute(r *gin.Engine) *gin.Engine {
 	router.AuthRouther(r)
 	router.BookRouter(r)
 	router.SensorRouter(r)
+	router.ManagerRouter(r)
 	port := viper.GetString("server.port")
 	url := ginSwagger.URL("http://localhost:" + port + "/swagger/doc.json") // The url pointing to API definition
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler, url))

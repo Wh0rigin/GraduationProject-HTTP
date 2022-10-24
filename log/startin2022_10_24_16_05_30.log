@@ -18,8 +18,10 @@
 [GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (5 handlers)
 [GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (5 handlers)
 [GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (5 handlers)
+[GIN-debug] POST   /api/manager/login        --> github.com/Wh0rigin/GraduationProject/controller.ManagerLoginController (4 handlers)
 [GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
-[GIN] 2022/10/19 - 19:52:48 | 200 |    145.9906ms |             ::1 | POST     "/api/actuator/control"
+[GIN] 2022/10/24 - 16:06:37 | 200 |     50.9654ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/24 - 16:06:46 | 200 |      1.2224ms |             ::1 | POST     "/api/manager/login"
