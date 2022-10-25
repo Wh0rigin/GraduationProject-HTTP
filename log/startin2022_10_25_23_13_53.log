@@ -31,20 +31,5 @@
 [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
 Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
 [GIN-debug] Listening and serving HTTP on :8080
-[GIN] 2022/10/25 - 21:38:43 | 204 |            0s |             ::1 | OPTIONS  "/api/book/delete"
-[GIN] 2022/10/25 - 21:38:43 | 200 |      2.0225ms |             ::1 | DELETE   "/api/book/delete"
-[GIN] 2022/10/25 - 21:40:07 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto"
-[GIN] 2022/10/25 - 21:40:07 | 200 |       1.497ms |             ::1 | GET      "/api/book/all/nondto"
-[GIN] 2022/10/25 - 21:40:10 | 204 |            0s |             ::1 | OPTIONS  "/api/book/delete"
-[GIN] 2022/10/25 - 21:40:10 | 200 |      1.4573ms |             ::1 | DELETE   "/api/book/delete"
-[GIN] 2022/10/25 - 21:41:26 | 204 |      1.0001ms |             ::1 | OPTIONS  "/api/book/all/nondto"
-[GIN] 2022/10/25 - 21:41:26 | 200 |       1.271ms |             ::1 | GET      "/api/book/all/nondto"
-[GIN] 2022/10/25 - 21:41:28 | 204 |            0s |             ::1 | OPTIONS  "/api/book/delete"
-[GIN] 2022/10/25 - 21:41:28 | 200 |      2.5234ms |             ::1 | DELETE   "/api/book/delete"
-[GIN] 2022/10/25 - 21:41:29 | 200 |      1.8209ms |             ::1 | DELETE   "/api/book/delete"
-[GIN] 2022/10/25 - 21:41:30 | 200 |      1.3217ms |             ::1 | DELETE   "/api/book/delete"
-[GIN] 2022/10/25 - 21:41:30 | 200 |      1.7343ms |             ::1 | DELETE   "/api/book/delete"
-[GIN] 2022/10/25 - 21:42:01 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto"
-[GIN] 2022/10/25 - 21:42:01 | 200 |      2.4672ms |             ::1 | GET      "/api/book/all/nondto"
-[GIN] 2022/10/25 - 21:42:05 | 204 |            0s |             ::1 | OPTIONS  "/api/book/delete"
-[GIN] 2022/10/25 - 21:42:05 | 200 |      2.2274ms |             ::1 | DELETE   "/api/book/delete"
+[GIN] 2022/10/25 - 23:14:02 | 204 |            0s |             ::1 | OPTIONS  "/api/book/delete?isbn=21425125"
+[GIN] 2022/10/25 - 23:14:02 | 200 |      1.8926ms |             ::1 | DELETE   "/api/book/delete?isbn=21425125"

@@ -26,4 +26,5 @@ func BookRouter(r *gin.Engine) {
 
 	//api/book/select/isbn/{isbn}
 	r.GET("/api/book/select/isbn/:isbn", middleware.AuthMiddleware(), controller.SelectBookController)
+	r.GET("/api/book/select/nondto/isbn/:isbn", middleware.MangagerMiddleware(), controller.SelectBookNonDto)
 }

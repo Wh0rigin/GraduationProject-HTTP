@@ -62,6 +62,10 @@ param:
 */
 func DeleteBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
+	if isbn == "" {
+		isbn = ctx.Query("isbn")
+		fmt.Println("param:" + isbn)
+	}
 	fmt.Println(isbn)
 	err := dao.DeletetBook(common.GetDb(), isbn)
 	if err != nil {
@@ -250,6 +254,20 @@ func SelectBookController(ctx *gin.Context) {
 	response.Response(ctx, http.StatusOK, 200, gin.H{
 		"payload": bookDtos,
 		"count":   len(bookDtos),
+	}, "书籍查询成功")
+}
+
+func SelectBookNonDto(ctx *gin.Context) {
+	isbn := ctx.Param("isbn")
+	fmt.Println("isbn:", isbn)
+	books := dao.SeleteBook(common.GetDb(), isbn)
+	if books == nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+		return
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"payload": books,
+		"count":   len(books),
 	}, "书籍查询成功")
 }
 
