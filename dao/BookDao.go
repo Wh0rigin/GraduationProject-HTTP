@@ -3,6 +3,7 @@ package dao
 import (
 	"errors"
 
+	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/po"
 	"gorm.io/gorm"
 )
@@ -48,7 +49,7 @@ func GetBookByID(db *gorm.DB, id uint) (*po.Book, error) {
 }
 
 func UpdateBook(db *gorm.DB, book *po.Book) error {
-	nowBook, err := GetBookByID(GetDb(), book.ID)
+	nowBook, err := GetBookByID(common.GetDb(), book.ID)
 	if err != nil {
 		return err
 	}

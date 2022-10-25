@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
 	"github.com/Wh0rigin/GraduationProject/dto"
 	"github.com/Wh0rigin/GraduationProject/response"
@@ -23,7 +24,7 @@ import (
 // @Router       /api/sensor/all/{type} [GET]
 func AllSensorDataController(ctx *gin.Context) {
 	stype := ctx.Param("type")
-	datas := dao.GetAllSensorDataByType(dao.GetDb(), stype)
+	datas := dao.GetAllSensorDataByType(common.GetDb(), stype)
 	dataDtos := dto.NewSensorDataDtoByArray(datas)
 	response.Response(ctx, http.StatusOK, 200, gin.H{
 		"payload": dataDtos,
@@ -50,7 +51,7 @@ func RecentSensorDataController(ctx *gin.Context) {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "最新数据限制必须为数字且大于0")
 		return
 	}
-	datas := dao.GetRecentSensorDataWithType(dao.GetDb(), stype, limit)
+	datas := dao.GetRecentSensorDataWithType(common.GetDb(), stype, limit)
 	dataDtos := dto.NewSensorDataDtoByArray(datas)
 	response.Response(ctx, http.StatusOK, 200, gin.H{
 		"payload": dataDtos,

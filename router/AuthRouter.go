@@ -12,4 +12,5 @@ func AuthRouther(r *gin.Engine) {
 	//use telephone
 	r.POST("/api/auth/login", controller.LoginController)
 	r.GET("/api/auth/detail", middleware.AuthMiddleware(), controller.DetailController)
+
 }

@@ -30,7 +30,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		uid := claims.UserId
-		DB := dao.GetDb()
+		DB := common.GetDb()
 		var user po.User
 		user = dao.GetUserById(DB, user, uid)
 

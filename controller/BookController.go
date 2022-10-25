@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
 	"github.com/Wh0rigin/GraduationProject/dto"
 	"github.com/Wh0rigin/GraduationProject/po"
@@ -13,7 +14,7 @@ import (
 )
 
 func CreateBookController(ctx *gin.Context) {
-	db := dao.GetDb()
+	db := common.GetDb()
 	name := ctx.PostForm("name")
 	isbn := ctx.PostForm("isbn")
 	number, err := strconv.Atoi(ctx.PostForm("number"))
@@ -61,7 +62,7 @@ param:
 */
 func DeleteBookController(ctx *gin.Context) {
 	isbn := ctx.PostForm("isbn")
-	err := dao.DeletetBook(dao.GetDb(), isbn)
+	err := dao.DeletetBook(common.GetDb(), isbn)
 	if err != nil {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "不存在的书籍信息")
 		return
@@ -84,13 +85,13 @@ func AddBookController(ctx *gin.Context) {
 		return
 	}
 	for {
-		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		book, err := dao.GetBookByIsbn(common.GetDb(), isbn)
 		if err != nil {
 			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
 		}
 		book.Number += uint(addition)
-		uerr := dao.UpdateBook(dao.GetDb(), book)
+		uerr := dao.UpdateBook(common.GetDb(), book)
 		if uerr == nil {
 			break
 		}
@@ -116,7 +117,7 @@ func ReduceBookController(ctx *gin.Context) {
 		return
 	}
 	for {
-		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		book, err := dao.GetBookByIsbn(common.GetDb(), isbn)
 		if err != nil {
 			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
@@ -126,7 +127,7 @@ func ReduceBookController(ctx *gin.Context) {
 			return
 		}
 		book.Number -= uint(reduce)
-		uerr := dao.UpdateBook(dao.GetDb(), book)
+		uerr := dao.UpdateBook(common.GetDb(), book)
 		if uerr == nil {
 			break
 		}
@@ -152,7 +153,7 @@ func RentBookController(ctx *gin.Context) {
 		return
 	}
 	for {
-		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		book, err := dao.GetBookByIsbn(common.GetDb(), isbn)
 		if err != nil {
 			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
@@ -162,7 +163,7 @@ func RentBookController(ctx *gin.Context) {
 			response.Response(ctx, http.StatusOK, 422, gin.H{}, "借出书籍不能大于馆内图书数")
 			return
 		}
-		uerr := dao.UpdateBook(dao.GetDb(), book)
+		uerr := dao.UpdateBook(common.GetDb(), book)
 		if uerr == nil {
 			break
 		}
@@ -187,7 +188,7 @@ func ReturnBookController(ctx *gin.Context) {
 		return
 	}
 	for {
-		book, err := dao.GetBookByIsbn(dao.GetDb(), isbn)
+		book, err := dao.GetBookByIsbn(common.GetDb(), isbn)
 		if err != nil {
 			response.Response(ctx, http.StatusOK, 422, gin.H{}, "书籍不存在")
 			return
@@ -198,7 +199,7 @@ func ReturnBookController(ctx *gin.Context) {
 		}
 
 		book.RentNumber -= uint(returnNumber)
-		uerr := dao.UpdateBook(dao.GetDb(), book)
+		uerr := dao.UpdateBook(common.GetDb(), book)
 		if uerr == nil {
 			break
 		}
@@ -211,7 +212,7 @@ func ReturnBookController(ctx *gin.Context) {
 }
 
 func AllBookController(ctx *gin.Context) {
-	books := dao.GetAllBook(dao.GetDb())
+	books := dao.GetAllBook(common.GetDb())
 	if books == nil {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
 		return
@@ -226,7 +227,7 @@ func AllBookController(ctx *gin.Context) {
 func SelectBookController(ctx *gin.Context) {
 	isbn := ctx.Param("isbn")
 	fmt.Println("isbn:", isbn)
-	books := dao.SeleteBook(dao.GetDb(), isbn)
+	books := dao.SeleteBook(common.GetDb(), isbn)
 	if books == nil {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
 		return

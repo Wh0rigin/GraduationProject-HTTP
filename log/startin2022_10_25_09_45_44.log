@@ -1,0 +1,41 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.RegisterController (5 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (5 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (6 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (6 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (6 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (6 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (6 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (6 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (6 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (6 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (6 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (6 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (6 handlers)
+[GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (6 handlers)
+[GIN-debug] POST   /api/manager/login        --> github.com/Wh0rigin/GraduationProject/controller.ManagerLoginController (5 handlers)
+[GIN-debug] POST   /api/manager/logout       --> github.com/Wh0rigin/GraduationProject/controller.LogoutController (5 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (5 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/25 - 09:45:55 | 200 |     52.7395ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 09:45:55 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 09:45:55 | 200 |      1.1306ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 09:45:55 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 09:45:55 | 404 |            0s |             ::1 | GET      "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 09:46:05 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/logout"
+[GIN] 2022/10/25 - 09:46:05 | 200 |            0s |             ::1 | POST     "/api/manager/logout"
+[GIN] 2022/10/25 - 09:49:25 | 200 |     51.9672ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 09:49:25 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 09:49:25 | 200 |      1.2473ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 09:49:25 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 09:49:25 | 404 |            0s |             ::1 | GET      "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 09:49:28 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/logout"
+[GIN] 2022/10/25 - 09:49:28 | 200 |            0s |             ::1 | POST     "/api/manager/logout"
+[GIN] 2022/10/25 - 09:49:34 | 404 |            0s |             ::1 | GET      "/api/manager/logout"

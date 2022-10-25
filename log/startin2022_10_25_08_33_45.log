@@ -1,0 +1,87 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.RegisterController (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (4 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (5 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (5 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (5 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (5 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (5 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (5 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (5 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (5 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (5 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (5 handlers)
+[GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (5 handlers)
+[GIN-debug] POST   /api/manager/login        --> github.com/Wh0rigin/GraduationProject/controller.ManagerLoginController (4 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/25 - 08:36:48 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:36:48 | 200 |      1.4954ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:36:51 | 200 |     50.9696ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:36:51 | 200 |      1.4889ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:37:02 | 200 |     51.4827ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:37:02 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:37:02 | 200 |      1.3133ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:10 | 200 |     53.2783ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:39:10 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:10 | 200 |      1.5552ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:14 | 200 |      50.567ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:39:14 | 200 |       997.5µs |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:22 | 200 |     51.3637ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:39:22 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:22 | 200 |      1.5789ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:38 | 200 |     51.0474ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:39:38 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:39:38 | 200 |      1.1558ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:41:55 | 200 |     51.7303ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:41:55 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:41:55 | 200 |       1.005ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:42:54 | 200 |     51.7083ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:42:54 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:42:54 | 200 |      1.3184ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:42:54 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:42:54 | 404 |            0s |             ::1 | GET      "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:44:06 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/article/list?page=1&limit=20"
+[GIN] 2022/10/25 - 08:44:06 | 404 |            0s |             ::1 | GET      "/vue-element-admin/article/list?page=1&limit=20"
+[GIN] 2022/10/25 - 08:44:21 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/routes"
+[GIN] 2022/10/25 - 08:44:21 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/roles"
+[GIN] 2022/10/25 - 08:44:21 | 404 |            0s |             ::1 | GET      "/vue-element-admin/routes"
+[GIN] 2022/10/25 - 08:44:21 | 404 |            0s |             ::1 | GET      "/vue-element-admin/roles"
+[GIN] 2022/10/25 - 08:44:29 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/article/list?page=1&limit=5&type=CN&sort=%2Bid"
+[GIN] 2022/10/25 - 08:44:29 | 404 |            0s |             ::1 | GET      "/vue-element-admin/article/list?page=1&limit=5&type=CN&sort=%2Bid"
+[GIN] 2022/10/25 - 08:44:32 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/article/list?page=1&limit=5&type=JP&sort=%2Bid"
+[GIN] 2022/10/25 - 08:44:32 | 404 |            0s |             ::1 | GET      "/vue-element-admin/article/list?page=1&limit=5&type=JP&sort=%2Bid"
+[GIN] 2022/10/25 - 08:44:33 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/article/list?page=1&limit=5&type=US&sort=%2Bid"
+[GIN] 2022/10/25 - 08:44:33 | 404 |            0s |             ::1 | GET      "/vue-element-admin/article/list?page=1&limit=5&type=US&sort=%2Bid"
+[GIN] 2022/10/25 - 08:45:06 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:45:06 | 200 |       631.4µs |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:46:11 | 200 |     51.2227ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:46:11 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:46:11 | 200 |      1.4314ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:48:21 | 200 |     52.1867ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 08:48:21 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:48:21 | 200 |      1.0446ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:48:22 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:48:22 | 404 |            0s |             ::1 | GET      "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:50:37 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/article/list"
+[GIN] 2022/10/25 - 08:50:37 | 404 |            0s |             ::1 | GET      "/vue-element-admin/article/list"
+[GIN] 2022/10/25 - 08:50:44 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/article/list"
+[GIN] 2022/10/25 - 08:50:44 | 404 |            0s |             ::1 | GET      "/vue-element-admin/article/list"
+[GIN] 2022/10/25 - 08:51:15 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:51:15 | 200 |      1.6114ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:51:18 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:51:18 | 404 |            0s |             ::1 | GET      "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:51:26 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/user/logout"
+[GIN] 2022/10/25 - 08:51:26 | 404 |            0s |             ::1 | POST     "/vue-element-admin/user/logout"
+[GIN] 2022/10/25 - 08:52:04 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 08:52:04 | 200 |       1.533ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 08:52:04 | 204 |            0s |             ::1 | OPTIONS  "/vue-element-admin/transaction/list"
+[GIN] 2022/10/25 - 08:52:04 | 404 |            0s |             ::1 | GET      "/vue-element-admin/transaction/list"

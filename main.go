@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	dao "github.com/Wh0rigin/GraduationProject/dao"
+	"github.com/Wh0rigin/GraduationProject/common"
 	_ "github.com/Wh0rigin/GraduationProject/docs"
 	"github.com/Wh0rigin/GraduationProject/middleware"
 	gin "github.com/gin-gonic/gin"
@@ -28,7 +28,7 @@ import (
 // @BasePath /
 func main() {
 	InitConifg()
-	dao.InitDB()
+	common.InitDB()
 
 	// go func() {
 	// 	for {
@@ -36,10 +36,13 @@ func main() {
 	// 	}
 	// }()
 
-	defer dao.CloseDb()
+	defer common.CloseDb()
 
 	r := gin.Default()
 	r.Use(middleware.CorsMiddleware())
+	// TODO session redis
+	// store := common.Redisutil()
+	// r.Use(sessions.Sessions("mysession", store))
 	r = CollectRoute(r)
 	port := viper.GetString("server.port")
 	if port != "" {

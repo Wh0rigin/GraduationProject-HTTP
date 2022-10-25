@@ -37,7 +37,7 @@ func ManagerLoginController(ctx *gin.Context) {
 		return
 	}
 
-	user, err := dao.GetUserByAccount(dao.GetDb(), account)
+	user, err := dao.GetUserByAccount(common.GetDb(), account)
 
 	if user.Manager == false {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "您没有权限访问")
@@ -60,9 +60,37 @@ func ManagerLoginController(ctx *gin.Context) {
 		return
 	}
 
+	// TODO session Redis
+	// session := sessions.Default(ctx)
+	// session.Get("manager")
+
+	// session.Set("manager", token)
+	// err = session.Save()
+	// if err != nil {
+	// 	fmt.Println("Fail to save session:", err.Error())
+	// } else {
+	// 	fmt.Println("Succeed to save session")
+	// }
 	response.Response(ctx, http.StatusOK, 200,
 		gin.H{
 			"username":    user.Name,
 			"AccessToken": token,
 		}, "登录成功")
+}
+
+func LogoutController(ctx *gin.Context) {
+	// TODO session Redis
+	// session := sessions.Default(ctx)
+	// // session.Delete("manager")
+	// session.Set("manager", "") // this will mark the session as "written" and hopefully remove the username
+	// // session.Set("manager", "") // this will mark the session as "written" and hopefully remove the username
+	// session.Clear()
+	// session.Options(sessions.Options{MaxAge: -1})
+	// err := session.Save()
+	// if err != nil {
+	// 	fmt.Println("Fail to save session:", err.Error())
+	// } else {
+	// 	fmt.Println("Succeed to save session")
+	// }
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "登出成功")
 }

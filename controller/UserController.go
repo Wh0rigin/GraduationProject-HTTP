@@ -38,7 +38,7 @@ func LoginController(ctx *gin.Context) {
 		return
 	}
 
-	user, err := dao.GetUserByAccount(dao.GetDb(), account)
+	user, err := dao.GetUserByAccount(common.GetDb(), account)
 	if err != nil {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "账号错误")
 		return
@@ -86,7 +86,7 @@ func RegisterController(ctx *gin.Context) {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "密码长度必须大于6位")
 		return
 	}
-	if dao.IsTelephoneExist(dao.GetDb(), telephone) {
+	if dao.IsTelephoneExist(common.GetDb(), telephone) {
 		response.Response(ctx, http.StatusOK, 422, gin.H{}, "电话号码已存在")
 		return
 	}
@@ -98,7 +98,7 @@ func RegisterController(ctx *gin.Context) {
 	}
 	var user po.User = po.NewUser(name, telephone, string(hashedpassword))
 
-	dao.AddUser(dao.GetDb(), &user)
+	dao.AddUser(common.GetDb(), &user)
 
 	token, err := common.ReleaseToken(&user)
 	if err != nil {
