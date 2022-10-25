@@ -238,3 +238,90 @@ func SelectBookController(ctx *gin.Context) {
 		"count":   len(bookDtos),
 	}, "书籍查询成功")
 }
+
+// getAllNumber godoc
+// @Summary      getAllNumber
+// @Description  getAllNumber
+// @Tags         /api/book
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJsons
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/book/number/all [GET]
+func GetAllBookNumber(ctx *gin.Context) {
+	books := dao.GetAllBook(common.GetDb())
+	if books == nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+		return
+	}
+
+	// 取出所有并累加馆存数量
+	var number uint
+	number = 0
+	for _, book := range books {
+		number += book.Number
+	}
+
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"number": number,
+	}, "书籍数量查询成功")
+}
+
+// getRentedBook godoc
+// @Summary      getRentedBook
+// @Description  getRentedBook
+// @Tags         /api/book
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJsons
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/book/number/rent [GET]
+func GetRentBookNumber(ctx *gin.Context) {
+	books := dao.GetAllBook(common.GetDb())
+	if books == nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+		return
+	}
+
+	// 取出所有并累加馆存数量
+	var number uint
+	number = 0
+	for _, book := range books {
+		number += book.RentNumber
+	}
+
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"number": number,
+	}, "书籍数量查询成功")
+}
+
+// GetAvailableBookNumber godoc
+// @Summary      GetAvailableBookNumber
+// @Description  GetAvailableBookNumber
+// @Tags         /api/book
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJsons
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/book/number/available [GET]
+func GetAvailableBookNumber(ctx *gin.Context) {
+	books := dao.GetAllBook(common.GetDb())
+	if books == nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+		return
+	}
+
+	// 取出所有并累加馆存数量
+	var number uint
+	number = 0
+	for _, book := range books {
+		number += (book.Number - book.RentNumber)
+	}
+
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"number": number,
+	}, "书籍数量查询成功")
+}

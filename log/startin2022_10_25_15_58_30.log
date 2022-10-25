@@ -1,0 +1,119 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.RegisterController (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (4 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (5 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (5 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (5 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (5 handlers)
+[GIN-debug] GET    /api/book/number/all      --> github.com/Wh0rigin/GraduationProject/controller.GetAllBookNumber (5 handlers)
+[GIN-debug] GET    /api/book/number/rent     --> github.com/Wh0rigin/GraduationProject/controller.GetRentBookNumber (5 handlers)
+[GIN-debug] GET    /api/book/number/available --> github.com/Wh0rigin/GraduationProject/controller.GetAvailableBookNumber (5 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (5 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (5 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (5 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (5 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (5 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (5 handlers)
+[GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (5 handlers)
+[GIN-debug] POST   /api/manager/login        --> github.com/Wh0rigin/GraduationProject/controller.ManagerLoginController (4 handlers)
+[GIN-debug] POST   /api/manager/logout       --> github.com/Wh0rigin/GraduationProject/controller.LogoutController (4 handlers)
+[GIN-debug] GET    /api/manager/alluser      --> github.com/Wh0rigin/GraduationProject/controller.GetAllUser (5 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/25 - 15:58:47 | 200 |      1.4328ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 15:59:48 | 200 |     49.8914ms |             ::1 | POST     "/api/auth/login"
+[GIN] 2022/10/25 - 15:59:57 | 401 |      1.6408ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:00:50 | 200 |     52.9302ms |             ::1 | POST     "/api/auth/login"
+[GIN] 2022/10/25 - 16:01:01 | 200 |      2.2248ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:10:29 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:10:29 | 200 |      1.6194ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:10:30 | 200 |      1.5475ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:10:47 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:10:47 | 200 |      1.2499ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:10:50 | 200 |       790.7µs |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:11:36 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:11:36 | 200 |       747.4µs |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:12:40 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:12:40 | 200 |      2.2984ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:13:36 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:13:36 | 200 |      2.7728ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:14:15 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:14:15 | 200 |      1.6812ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:14:38 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:14:38 | 200 |      2.1045ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:16:49 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:16:49 | 200 |      1.3054ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:16:49 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:16:49 | 200 |      1.1612ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:17:09 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:17:09 | 200 |      1.5005ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:17:09 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:17:09 | 200 |      1.3996ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:37 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:37 | 200 |       2.015ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:38 | 200 |      1.8522ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:39 | 200 |       2.118ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:41 | 200 |      1.7954ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:58 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:18:58 | 200 |      1.9228ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:19:06 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:19:06 | 200 |       1.029ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:19:08 | 200 |       856.8µs |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:19:54 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:19:54 | 200 |      1.3773ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:19:54 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:19:54 | 200 |      1.3081ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:20:00 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:20:00 | 200 |      1.0095ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:20:00 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:20:00 | 200 |      1.2021ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:20:34 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:20:34 | 200 |      1.1155ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:20:34 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:20:34 | 200 |      1.2174ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:21:03 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:21:03 | 200 |      2.2538ms |             ::1 | GET      "/api/manager/alluser"
+[GIN] 2022/10/25 - 16:22:04 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/25 - 16:22:04 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/25 - 16:22:04 | 200 |      1.6032ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/25 - 16:22:04 | 200 |       8.707ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/25 - 16:22:04 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/25 - 16:22:04 | 200 |       1.009ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/25 - 16:22:04 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/25 - 16:22:04 | 200 |       2.665ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/25 - 16:24:26 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:24:26 | 200 |      1.5515ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:24:27 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/25 - 16:24:27 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/25 - 16:24:27 | 200 |      1.3082ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/25 - 16:24:27 | 200 |      1.0749ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/25 - 16:24:27 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/25 - 16:24:27 | 200 |      1.2315ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/25 - 16:24:27 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/25 - 16:24:27 | 200 |      5.6663ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/25 - 16:25:07 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user"
+[GIN] 2022/10/25 - 16:25:07 | 404 |            0s |             ::1 | GET      "/api/manager/all/user"
+[GIN] 2022/10/25 - 16:27:10 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/logout"
+[GIN] 2022/10/25 - 16:27:10 | 200 |            0s |             ::1 | POST     "/api/manager/logout"
+[GIN] 2022/10/25 - 16:27:11 | 200 |     50.4549ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 16:27:11 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 16:27:11 | 200 |      1.2292ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 16:27:11 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user"
+[GIN] 2022/10/25 - 16:27:11 | 404 |            0s |             ::1 | GET      "/api/manager/all/user"
+[GIN] 2022/10/25 - 16:27:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/25 - 16:27:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/25 - 16:27:14 | 200 |      1.5554ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/25 - 16:27:14 | 200 |      1.0576ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/25 - 16:27:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/25 - 16:27:14 | 200 |      1.0306ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/25 - 16:27:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/25 - 16:27:14 | 200 |      1.9433ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/25 - 16:27:15 | 404 |            0s |             ::1 | GET      "/api/manager/all/user"

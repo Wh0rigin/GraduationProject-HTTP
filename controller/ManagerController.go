@@ -39,13 +39,13 @@ func ManagerLoginController(ctx *gin.Context) {
 
 	user, err := dao.GetUserByAccount(common.GetDb(), account)
 
-	if user.Manager == false {
-		response.Response(ctx, http.StatusOK, 422, gin.H{}, "您没有权限访问")
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "账号错误")
 		return
 	}
 
-	if err != nil {
-		response.Response(ctx, http.StatusOK, 422, gin.H{}, "账号错误")
+	if user.Manager == false {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "您没有权限访问")
 		return
 	}
 
@@ -78,6 +78,16 @@ func ManagerLoginController(ctx *gin.Context) {
 		}, "登录成功")
 }
 
+// logout godoc
+// @Summary      logout
+// @Description  login account by account and password return AccessToken
+// @Tags         /api/auth
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/auth/logout [POST]
 func LogoutController(ctx *gin.Context) {
 	// TODO session Redis
 	// session := sessions.Default(ctx)
@@ -93,4 +103,92 @@ func LogoutController(ctx *gin.Context) {
 	// 	fmt.Println("Succeed to save session")
 	// }
 	response.Response(ctx, http.StatusOK, 200, gin.H{}, "登出成功")
+}
+
+// GetAllUser godoc
+// @Summary      GetAllUser
+// @Description GetAllUser
+// @Tags         /api/manager
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/manager/all/user [POST]
+func GetAllUser(ctx *gin.Context) {
+	users := dao.GetAllUser(common.GetDb())
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"payload": users,
+		"count":   len(users),
+	}, "用户查询成功")
+}
+
+// DeleteUser godoc
+// @Summary      DeleteUser
+// @Description DeleteUser
+// @Tags         /api/manager
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/manager/delete/user [POST]
+func DeleteUser(ctx *gin.Context) {
+	account := ctx.PostForm("account")
+	user, err := dao.GetUserByAccount(common.GetDb(), account)
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "账号错误")
+		return
+	}
+	dao.DeleteUser(common.GetDb(), user)
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "删除成功")
+}
+
+// UpdateUser godoc
+// @Summary      UpdateUser
+// @Description  UpdateUser
+// @Tags         /api/manager
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJson
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/manager/update/user [POST]
+func UpdateUser(ctx *gin.Context) {
+	name := ctx.PostForm("user[Name]")
+	manager := ctx.PostForm("user[Manager]")
+	telephone := ctx.PostForm("user[Telephone]")
+	password := ctx.PostForm("user[NewPassword]")
+
+	for {
+		userBean, err := dao.GetUserByAccount(common.GetDb(), name)
+
+		if err != nil {
+			response.Response(ctx, http.StatusOK, 202, gin.H{}, "没有这个用户")
+			return
+		}
+
+		if manager == "true" {
+			userBean.Manager = true
+		} else {
+			userBean.Manager = false
+		}
+
+		userBean.Name = name
+		userBean.Telephone = telephone
+		if password != "" {
+			hashedpassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+			if err != nil {
+				response.Response(ctx, http.StatusOK, 500, gin.H{}, "密码加密失败")
+				return
+			}
+			userBean.Password = string(hashedpassword)
+		}
+
+		uerr := dao.UpdateUser(common.GetDb(), userBean)
+		if uerr == nil {
+			break
+		}
+	}
+	response.Response(ctx, http.StatusOK, 200, gin.H{}, "修改成功")
 }

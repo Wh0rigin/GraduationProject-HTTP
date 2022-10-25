@@ -1,0 +1,53 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.RegisterController (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (4 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (5 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (5 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (5 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (5 handlers)
+[GIN-debug] GET    /api/book/number/all      --> github.com/Wh0rigin/GraduationProject/controller.GetAllBookNumber (5 handlers)
+[GIN-debug] GET    /api/book/number/rent     --> github.com/Wh0rigin/GraduationProject/controller.GetRentBookNumber (5 handlers)
+[GIN-debug] GET    /api/book/number/available --> github.com/Wh0rigin/GraduationProject/controller.GetAvailableBookNumber (5 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (5 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (5 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (5 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (5 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (5 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (5 handlers)
+[GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (5 handlers)
+[GIN-debug] POST   /api/manager/login        --> github.com/Wh0rigin/GraduationProject/controller.ManagerLoginController (4 handlers)
+[GIN-debug] POST   /api/manager/logout       --> github.com/Wh0rigin/GraduationProject/controller.LogoutController (4 handlers)
+[GIN-debug] GET    /api/manager/all/user     --> github.com/Wh0rigin/GraduationProject/controller.GetAllUser (5 handlers)
+[GIN-debug] POST   /api/manager/delete/user  --> github.com/Wh0rigin/GraduationProject/controller.DeleteUser (5 handlers)
+[GIN-debug] POST   /api/manager/update/user  --> github.com/Wh0rigin/GraduationProject/controller.UpdateUser (5 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/25 - 18:27:40 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user"
+[GIN] 2022/10/25 - 18:27:40 | 200 |      1.1057ms |             ::1 | GET      "/api/manager/all/user"
+[GIN] 2022/10/25 - 18:27:47 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user"
+[GIN] 2022/10/25 - 18:27:47 | 200 |      1.3318ms |             ::1 | GET      "/api/manager/all/user"
+[GIN] 2022/10/25 - 18:27:52 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/logout"
+[GIN] 2022/10/25 - 18:27:52 | 200 |            0s |             ::1 | POST     "/api/manager/logout"
+[GIN] 2022/10/25 - 18:27:52 | 200 |     51.6536ms |             ::1 | POST     "/api/manager/login"
+[GIN] 2022/10/25 - 18:27:53 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/25 - 18:27:53 | 200 |      1.3886ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/25 - 18:27:53 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/25 - 18:27:53 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/25 - 18:27:53 | 200 |      1.7435ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/25 - 18:27:53 | 200 |      3.1369ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/25 - 18:27:53 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/25 - 18:27:53 | 200 |       964.3µs |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/25 - 18:27:53 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/25 - 18:27:53 | 200 |      1.5097ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/25 - 18:27:55 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user"
+[GIN] 2022/10/25 - 18:27:55 | 200 |      1.3845ms |             ::1 | GET      "/api/manager/all/user"
+[GIN] 2022/10/25 - 18:28:13 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/update/user"
+[GIN] 2022/10/25 - 18:28:13 | 200 |      1.0797ms |             ::1 | POST     "/api/manager/update/user"

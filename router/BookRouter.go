@@ -12,6 +12,11 @@ func BookRouter(r *gin.Engine) {
 	r.DELETE("/api/book/delete", middleware.AuthMiddleware(), controller.DeleteBookController)
 	r.GET("/api/book/all", middleware.AuthMiddleware(), controller.AllBookController)
 
+	//number
+	r.GET("/api/book/number/all", middleware.AuthMiddleware(), controller.GetAllBookNumber)
+	r.GET("/api/book/number/rent", middleware.AuthMiddleware(), controller.GetRentBookNumber)
+	r.GET("/api/book/number/available", middleware.AuthMiddleware(), controller.GetAvailableBookNumber)
+
 	//use ibsn
 	r.POST("/api/book/add", middleware.AuthMiddleware(), controller.AddBookController)
 	r.POST("/api/book/reduce", middleware.AuthMiddleware(), controller.ReduceBookController)

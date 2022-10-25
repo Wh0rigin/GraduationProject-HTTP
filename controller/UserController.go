@@ -78,8 +78,8 @@ func RegisterController(ctx *gin.Context) {
 	name := ctx.PostForm("name")
 	telephone := ctx.PostForm("telephone")
 	password := ctx.PostForm("password")
-	if len(telephone) != 11 {
-		response.Response(ctx, http.StatusOK, 422, gin.H{}, "电话长度必须为11位")
+	if len(telephone) < 11 {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "电话长度必须为大于10位")
 		return
 	}
 	if len(password) < 6 {
