@@ -11,6 +11,7 @@ func BookRouter(r *gin.Engine) {
 	r.POST("/api/book/create", middleware.AuthMiddleware(), controller.CreateBookController)
 	r.DELETE("/api/book/delete", middleware.AuthMiddleware(), controller.DeleteBookController)
 	r.GET("/api/book/all", middleware.AuthMiddleware(), controller.AllBookController)
+	r.GET("/api/book/all/nondto", middleware.MangagerMiddleware(), controller.AllBookNonDto)
 
 	//number
 	r.GET("/api/book/number/all", middleware.AuthMiddleware(), controller.GetAllBookNumber)
