@@ -3,6 +3,7 @@ package controller
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/Wh0rigin/GraduationProject/common"
 	"github.com/Wh0rigin/GraduationProject/dao"
@@ -116,11 +117,28 @@ func LogoutController(ctx *gin.Context) {
 // @Failure      500  {object} response.ResponseJson
 // @Router       /api/manager/all/user [POST]
 func GetAllUser(ctx *gin.Context) {
+	limit, err := strconv.Atoi(ctx.Query("limit"))
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "限制数量错误")
+	}
+	page, err := strconv.Atoi(ctx.Query("page"))
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "分页错误")
+	}
+
 	users := dao.GetAllUser(common.GetDb())
-	response.Response(ctx, http.StatusOK, 200, gin.H{
-		"payload": users,
-		"count":   len(users),
-	}, "用户查询成功")
+	if limit*page < len(users) {
+		response.Response(ctx, http.StatusOK, 200, gin.H{
+			"payload": users[limit*(page-1) : limit*page],
+			"count":   len(users),
+		}, "用户查询成功")
+	} else {
+		response.Response(ctx, http.StatusOK, 200, gin.H{
+			"payload": users[limit*(page-1):],
+			"count":   len(users),
+		}, "用户查询成功")
+	}
+
 }
 
 // DeleteUser godoc

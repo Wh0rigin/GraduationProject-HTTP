@@ -8,6 +8,7 @@ import (
 	"github.com/Wh0rigin/GraduationProject/dao"
 	"github.com/Wh0rigin/GraduationProject/dto"
 	"github.com/Wh0rigin/GraduationProject/response"
+	"github.com/Wh0rigin/GraduationProject/util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -57,4 +58,78 @@ func RecentSensorDataController(ctx *gin.Context) {
 		"payload": dataDtos,
 		"count":   len(dataDtos),
 	}, "数据查询成功")
+}
+
+// GetAllSensorDataNonDto godoc
+// @Summary      Get all Sensor Data nonlimit nonDto
+// @Description  get all sensor data nonlimit
+// @Tags         /api/sensor/
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJsons
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/sensor/all/non/filtrate [GET]
+func GetAllSensorDataNonFiltrate(ctx *gin.Context) {
+	datas := dao.GetAllSensorData(common.GetDb())
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"payload": datas,
+		"count":   len(datas),
+	}, "数据查询成功")
+}
+
+// GetAllSensorDataLimit godoc
+// @Summary      Get all Sensor Data limit
+// @Description  get all sensor data limit
+// @Tags         /api/sensor/
+// @Accept       json
+// @Produce      json
+// @Success      200  {object} response.ResponseJsons
+// @Failure      442  {object} response.ResponseJson
+// @Failure      500  {object} response.ResponseJson
+// @Router       /api/sensor/all/page [GET]
+func GetAllSensorDataLimit(ctx *gin.Context) {
+	limit, err := strconv.Atoi(ctx.Query("limit"))
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "限制数量错误")
+	}
+	page, err := strconv.Atoi(ctx.Query("page"))
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "分页错误")
+	}
+	sort := ctx.Query("sort")
+	stype := ctx.Query("type")
+	if stype == "" {
+		datas := dao.GetAllSensorData(common.GetDb())
+		if sort == "-id" {
+			util.ReverseSensorData(datas)
+		}
+		if limit*page < len(datas) {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": datas[limit*(page-1) : limit*page],
+				"count":   len(datas),
+			}, "数据查询成功")
+		} else {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": datas[limit*(page-1):],
+				"count":   len(datas),
+			}, "数据查询成功")
+		}
+		return
+	}
+	datas := dao.GetAllSensorDataByType(common.GetDb(), stype)
+	if sort == "-id" {
+		util.ReverseSensorData(datas)
+	}
+	if limit*page < len(datas) {
+		response.Response(ctx, http.StatusOK, 200, gin.H{
+			"payload": datas[limit*(page-1) : limit*page],
+			"count":   len(datas),
+		}, "数据查询成功")
+	} else {
+		response.Response(ctx, http.StatusOK, 200, gin.H{
+			"payload": datas[limit*(page-1):],
+			"count":   len(datas),
+		}, "数据查询成功")
+	}
 }

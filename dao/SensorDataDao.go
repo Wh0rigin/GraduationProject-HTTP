@@ -14,3 +14,8 @@ func GetRecentSensorDataWithType(db *gorm.DB, stype string, limit int) (datas []
 	db.Where("sensor_type = ?", stype).Order("id desc").Limit(limit).Find(&datas)
 	return datas
 }
+
+func GetAllSensorData(db *gorm.DB) (datas []po.SensorData) {
+	db.Find(&datas)
+	return datas
+}

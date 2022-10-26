@@ -10,6 +10,7 @@ import (
 	"github.com/Wh0rigin/GraduationProject/dto"
 	"github.com/Wh0rigin/GraduationProject/po"
 	"github.com/Wh0rigin/GraduationProject/response"
+	"github.com/Wh0rigin/GraduationProject/util"
 	"github.com/gin-gonic/gin"
 )
 
@@ -231,15 +232,76 @@ func AllBookController(ctx *gin.Context) {
 }
 
 func AllBookNonDto(ctx *gin.Context) {
-	books := dao.GetAllBook(common.GetDb())
-	if books == nil {
-		response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+	limit, err := strconv.Atoi(ctx.Query("limit"))
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "限制数量错误")
+	}
+	page, err := strconv.Atoi(ctx.Query("page"))
+	if err != nil {
+		response.Response(ctx, http.StatusOK, 422, gin.H{}, "分页错误")
+	}
+
+	isbnorname := ctx.Query("isbnorname")
+	if isbnorname != "" && util.AllNumber(isbnorname) {
+		books := dao.SeleteBook(common.GetDb(), isbnorname)
+		if books == nil {
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+			return
+		}
+
+		if page*limit < len(books) {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": books[limit*(page-1) : limit*page],
+				"count":   len(books),
+			}, "书籍查询成功")
+		} else {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": books[limit*(page-1):],
+				"count":   len(books),
+			}, "书籍查询成功")
+		}
+		return
+	} else if util.AllNumber(isbnorname) {
+		books := dao.GetAllBook(common.GetDb())
+		if books == nil {
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+			return
+		}
+
+		if page*limit < len(books) {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": books[limit*(page-1) : limit*page],
+				"count":   len(books),
+			}, "书籍查询成功")
+		} else {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": books[limit*(page-1):],
+				"count":   len(books),
+			}, "书籍查询成功")
+		}
+		return
+	} else {
+		//使用名称查询数据
+		books := dao.SeleteBookByName(common.GetDb(), isbnorname)
+		if books == nil {
+			response.Response(ctx, http.StatusOK, 422, gin.H{}, "查询书籍时发生意外错误")
+			return
+		}
+
+		if page*limit < len(books) {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": books[limit*(page-1) : limit*page],
+				"count":   len(books),
+			}, "书籍查询成功")
+		} else {
+			response.Response(ctx, http.StatusOK, 200, gin.H{
+				"payload": books[limit*(page-1):],
+				"count":   len(books),
+			}, "书籍查询成功")
+		}
 		return
 	}
-	response.Response(ctx, http.StatusOK, 200, gin.H{
-		"payload": books,
-		"count":   len(books),
-	}, "书籍查询成功")
+
 }
 
 func SelectBookController(ctx *gin.Context) {

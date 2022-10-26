@@ -73,3 +73,9 @@ func SeleteBook(db *gorm.DB, isbn string) (books []po.Book) {
 	db.Where("isbn like ?", isbn+"%").Find(&books)
 	return books
 }
+
+// select book by hazy isbn
+func SeleteBookByName(db *gorm.DB, name string) (books []po.Book) {
+	db.Where("name like ?", name+"%").Find(&books)
+	return books
+}

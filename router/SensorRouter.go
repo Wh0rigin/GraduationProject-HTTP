@@ -11,4 +11,7 @@ func SensorRouter(r *gin.Engine) {
 	r.GET("/api/sensor/recent/:type/:limit", middleware.AuthMiddleware(), controller.RecentSensorDataController)
 
 	r.POST("/api/actuator/control", middleware.AuthMiddleware(), controller.ControlController)
+	r.GET("/api/sensor/all/non/filtrate", middleware.MangagerMiddleware(), controller.GetAllSensorDataNonFiltrate)
+	//分页
+	r.GET("/api/sensor/all/page", middleware.MangagerMiddleware(), controller.GetAllSensorDataLimit)
 }
