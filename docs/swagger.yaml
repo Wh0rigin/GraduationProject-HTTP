@@ -102,7 +102,30 @@ paths:
       summary: Login an account
       tags:
       - /api/auth
-  /api/auth/resiter:
+  /api/auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: login account by account and password return AccessToken
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: logout
+      tags:
+      - /api/auth
+  /api/auth/register:
     post:
       consumes:
       - application/json
@@ -141,9 +164,183 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/response.ResponseJson'
-      summary: Resiter an account
+      summary: register an account
       tags:
       - /api/auth
+  /api/book/number/all:
+    get:
+      consumes:
+      - application/json
+      description: getAllNumber
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJsons'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: getAllNumber
+      tags:
+      - /api/book
+  /api/book/number/available:
+    get:
+      consumes:
+      - application/json
+      description: GetAvailableBookNumber
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJsons'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: GetAvailableBookNumber
+      tags:
+      - /api/book
+  /api/book/number/rent:
+    get:
+      consumes:
+      - application/json
+      description: getRentedBook
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJsons'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: getRentedBook
+      tags:
+      - /api/book
+  /api/manager/all/user:
+    post:
+      consumes:
+      - application/json
+      description: GetAllUser
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: GetAllUser
+      tags:
+      - /api/manager
+  /api/manager/delete/user:
+    post:
+      consumes:
+      - application/json
+      description: DeleteUser
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: DeleteUser
+      tags:
+      - /api/manager
+  /api/manager/login:
+    post:
+      consumes:
+      - application/json
+      description: login account by account and password return AccessToken
+      parameters:
+      - description: Account Telephone
+        in: body
+        name: account
+        required: true
+        schema:
+          type: string
+      - description: Account password
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Login an account
+      tags:
+      - /api/manager
+  /api/manager/update/user:
+    post:
+      consumes:
+      - application/json
+      description: UpdateUser
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: UpdateUser
+      tags:
+      - /api/manager
   /api/sensor/all/{type}:
     get:
       consumes:
@@ -171,6 +368,52 @@ paths:
           schema:
             $ref: '#/definitions/response.ResponseJson'
       summary: Get all Sensor Data
+      tags:
+      - /api/sensor/
+  /api/sensor/all/non/filtrate:
+    get:
+      consumes:
+      - application/json
+      description: get all sensor data nonlimit
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJsons'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Get all Sensor Data nonlimit nonDto
+      tags:
+      - /api/sensor/
+  /api/sensor/all/page:
+    get:
+      consumes:
+      - application/json
+      description: get all sensor data limit
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.ResponseJsons'
+        "442":
+          description: ""
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ResponseJson'
+      summary: Get all Sensor Data limit
       tags:
       - /api/sensor/
   /api/sensor/recent/{type}/{limit}:

@@ -1,0 +1,155 @@
+[GIN-debug] [WARNING] Creating an Engine instance with the Logger and Recovery middleware already attached.
+
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] POST   /api/auth/register        --> github.com/Wh0rigin/GraduationProject/controller.RegisterController (4 handlers)
+[GIN-debug] POST   /api/auth/login           --> github.com/Wh0rigin/GraduationProject/controller.LoginController (4 handlers)
+[GIN-debug] GET    /api/auth/detail          --> github.com/Wh0rigin/GraduationProject/controller.DetailController (5 handlers)
+[GIN-debug] POST   /api/book/create          --> github.com/Wh0rigin/GraduationProject/controller.CreateBookController (5 handlers)
+[GIN-debug] DELETE /api/book/delete          --> github.com/Wh0rigin/GraduationProject/controller.DeleteBookController (5 handlers)
+[GIN-debug] GET    /api/book/all             --> github.com/Wh0rigin/GraduationProject/controller.AllBookController (5 handlers)
+[GIN-debug] GET    /api/book/all/nondto      --> github.com/Wh0rigin/GraduationProject/controller.AllBookNonDto (5 handlers)
+[GIN-debug] GET    /api/book/number/all      --> github.com/Wh0rigin/GraduationProject/controller.GetAllBookNumber (5 handlers)
+[GIN-debug] GET    /api/book/number/rent     --> github.com/Wh0rigin/GraduationProject/controller.GetRentBookNumber (5 handlers)
+[GIN-debug] GET    /api/book/number/available --> github.com/Wh0rigin/GraduationProject/controller.GetAvailableBookNumber (5 handlers)
+[GIN-debug] POST   /api/book/add             --> github.com/Wh0rigin/GraduationProject/controller.AddBookController (5 handlers)
+[GIN-debug] POST   /api/book/reduce          --> github.com/Wh0rigin/GraduationProject/controller.ReduceBookController (5 handlers)
+[GIN-debug] POST   /api/book/rent            --> github.com/Wh0rigin/GraduationProject/controller.RentBookController (5 handlers)
+[GIN-debug] POST   /api/book/return          --> github.com/Wh0rigin/GraduationProject/controller.ReturnBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookController (5 handlers)
+[GIN-debug] GET    /api/book/select/nondto/isbn/:isbn --> github.com/Wh0rigin/GraduationProject/controller.SelectBookNonDto (5 handlers)
+[GIN-debug] GET    /api/sensor/all/:type     --> github.com/Wh0rigin/GraduationProject/controller.AllSensorDataController (5 handlers)
+[GIN-debug] GET    /api/sensor/recent/:type/:limit --> github.com/Wh0rigin/GraduationProject/controller.RecentSensorDataController (5 handlers)
+[GIN-debug] POST   /api/actuator/control     --> github.com/Wh0rigin/GraduationProject/controller.ControlController (5 handlers)
+[GIN-debug] GET    /api/sensor/all/non/filtrate --> github.com/Wh0rigin/GraduationProject/controller.GetAllSensorDataNonFiltrate (5 handlers)
+[GIN-debug] GET    /api/sensor/all/page      --> github.com/Wh0rigin/GraduationProject/controller.GetAllSensorDataLimit (5 handlers)
+[GIN-debug] POST   /api/manager/login        --> github.com/Wh0rigin/GraduationProject/controller.ManagerLoginController (4 handlers)
+[GIN-debug] POST   /api/manager/logout       --> github.com/Wh0rigin/GraduationProject/controller.LogoutController (4 handlers)
+[GIN-debug] GET    /api/manager/all/user     --> github.com/Wh0rigin/GraduationProject/controller.GetAllUser (5 handlers)
+[GIN-debug] POST   /api/manager/delete/user  --> github.com/Wh0rigin/GraduationProject/controller.DeleteUser (5 handlers)
+[GIN-debug] POST   /api/manager/update/user  --> github.com/Wh0rigin/GraduationProject/controller.UpdateUser (5 handlers)
+[GIN-debug] GET    /swagger/*any             --> github.com/swaggo/gin-swagger.CustomWrapHandler.func1 (4 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :8080
+[GIN] 2022/10/26 - 10:57:34 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:57:34 | 200 |      1.9351ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:57:36 | 200 |      2.0987ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:57:38 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=1"
+[GIN] 2022/10/26 - 10:57:38 | 200 |        1.57ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=1"
+[GIN] 2022/10/26 - 10:57:40 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=2"
+[GIN] 2022/10/26 - 10:57:40 | 200 |      1.0038ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=2"
+[GIN] 2022/10/26 - 10:57:42 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=3"
+[GIN] 2022/10/26 - 10:57:42 | 200 |      1.3187ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=3"
+[GIN] 2022/10/26 - 10:57:47 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=%E8%AE%A1%E7%AE%97%E6%9C%BA"
+[GIN] 2022/10/26 - 10:57:47 | 200 |       1.399ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=%E8%AE%A1%E7%AE%97%E6%9C%BA"
+[GIN] 2022/10/26 - 10:57:52 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=%E7%B4%A0"
+[GIN] 2022/10/26 - 10:57:52 | 200 |      1.9932ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname=%E7%B4%A0"
+[GIN] 2022/10/26 - 10:58:02 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:02 | 200 |      1.4114ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:16 | 204 |            0s |             ::1 | OPTIONS  "/api/book/create"
+[GIN] 2022/10/26 - 10:58:16 | 200 |     12.6598ms |             ::1 | POST     "/api/book/create"
+[GIN] 2022/10/26 - 10:58:16 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:16 | 200 |      1.1322ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:17 | 200 |      1.3133ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:25 | 204 |            0s |             ::1 | OPTIONS  "/api/book/create"
+[GIN] 2022/10/26 - 10:58:25 | 200 |     10.0634ms |             ::1 | POST     "/api/book/create"
+[GIN] 2022/10/26 - 10:58:25 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:25 | 200 |      1.2488ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:31 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=10&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:31 | 200 |       782.2µs |             ::1 | GET      "/api/book/all/nondto?page=1&limit=10&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:33 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=2&limit=10&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:33 | 200 |      1.0554ms |             ::1 | GET      "/api/book/all/nondto?page=2&limit=10&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:34 | 200 |      2.1416ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=10&sort=%2Bid&isbnorname="
+[GIN] 2022/10/26 - 10:58:37 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:58:37 | 200 |      1.2741ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:58:39 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/26 - 10:58:39 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/26 - 10:58:39 | 200 |      2.6612ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/26 - 10:58:39 | 200 |      3.7393ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/26 - 10:58:39 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/26 - 10:58:39 | 200 |      1.5078ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/26 - 10:58:39 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/26 - 10:58:39 | 200 |       816.7µs |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/26 - 10:58:40 | 200 |      1.5672ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:59:34 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 10:59:34 | 200 |       614.5µs |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:19 | 204 |            0s |             ::1 | OPTIONS  "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:19 | 200 |      1.3988ms |             ::1 | GET      "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:22 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:22 | 200 |      1.4702ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:28 | 204 |            0s |             ::1 | OPTIONS  "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:28 | 200 |       863.6µs |             ::1 | GET      "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:57 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:00:57 | 200 |      1.3659ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:00 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:00 | 200 |      1.9673ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:01 | 204 |            0s |             ::1 | OPTIONS  "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:01 | 200 |      1.8024ms |             ::1 | GET      "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:04 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:04 | 200 |       966.9µs |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:07 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:07 | 200 |         839µs |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:01:08 | 200 |       718.3µs |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:05:41 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:05:41 | 200 |       850.3µs |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:17:13 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/26 - 11:17:13 | 200 |      2.2776ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/26 - 11:17:13 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:17:13 | 200 |      1.8947ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:20 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/26 - 11:18:20 | 200 |      1.5182ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/26 - 11:18:20 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:20 | 200 |      2.8607ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:22 | 204 |            0s |             ::1 | OPTIONS  "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:22 | 200 |      2.1632ms |             ::1 | GET      "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:38 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/26 - 11:18:38 | 200 |      1.1909ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/26 - 11:18:38 | 204 |            0s |             ::1 | OPTIONS  "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:38 | 200 |      1.5664ms |             ::1 | GET      "/api/sensor/all/page?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:18:40 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/26 - 11:18:40 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/26 - 11:18:40 | 200 |      1.8624ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/26 - 11:18:40 | 200 |      1.1514ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/26 - 11:18:40 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:18:40 | 200 |      1.1833ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:18:40 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/26 - 11:18:40 | 200 |      2.1224ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/26 - 11:19:18 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/26 - 11:19:18 | 200 |      1.1103ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/26 - 11:19:18 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:19:18 | 200 |      1.2326ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:19:18 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/26 - 11:19:18 | 200 |      1.7949ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/26 - 11:20:21 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/26 - 11:20:21 | 200 |       762.8µs |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/26 - 11:20:21 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:20:21 | 200 |      1.8599ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:20:21 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/26 - 11:20:21 | 200 |      1.5392ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/26 - 11:21:10 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/26 - 11:21:10 | 200 |       993.2µs |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/26 - 11:21:16 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:21:16 | 200 |      1.3401ms |             ::1 | GET      "/api/book/all/nondto?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:21:53 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/26 - 11:21:53 | 200 |       1.509ms |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/26 - 11:22:14 | 204 |            0s |             ::1 | OPTIONS  "/api/auth/detail"
+[GIN] 2022/10/26 - 11:22:14 | 200 |       811.2µs |             ::1 | GET      "/api/auth/detail"
+[GIN] 2022/10/26 - 11:22:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/all"
+[GIN] 2022/10/26 - 11:22:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/26 - 11:22:14 | 200 |      2.2337ms |             ::1 | GET      "/api/book/all"
+[GIN] 2022/10/26 - 11:22:14 | 200 |      1.6581ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/26 - 11:22:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:22:14 | 200 |      1.0442ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:22:14 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/26 - 11:22:14 | 200 |      1.0137ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/26 - 11:22:22 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/all"
+[GIN] 2022/10/26 - 11:22:22 | 200 |      1.8075ms |             ::1 | GET      "/api/book/number/all"
+[GIN] 2022/10/26 - 11:22:22 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:22:22 | 200 |      1.5295ms |             ::1 | GET      "/api/book/number/rent"
+[GIN] 2022/10/26 - 11:22:22 | 204 |            0s |             ::1 | OPTIONS  "/api/book/number/available"
+[GIN] 2022/10/26 - 11:22:22 | 200 |      2.4372ms |             ::1 | GET      "/api/book/number/available"
+[GIN] 2022/10/26 - 11:25:23 | 204 |            0s |             ::1 | OPTIONS  "/api/manager/all/user?page=1&limit=20&sort=%2Bid"
+[GIN] 2022/10/26 - 11:25:23 | 200 |       2.019ms |             ::1 | GET      "/api/manager/all/user?page=1&limit=20&sort=%2Bid"

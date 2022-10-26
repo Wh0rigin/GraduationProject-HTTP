@@ -108,7 +108,42 @@
                 }
             }
         },
-        "/api/auth/resiter": {
+        "/api/auth/logout": {
+            "post": {
+                "description": "login account by account and password return AccessToken",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/auth"
+                ],
+                "summary": "logout",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/register": {
             "post": {
                 "description": "create account by account and password",
                 "consumes": [
@@ -120,7 +155,7 @@
                 "tags": [
                     "/api/auth"
                 ],
-                "summary": "Resiter an account",
+                "summary": "register an account",
                 "parameters": [
                     {
                         "description": "Account Name",
@@ -155,6 +190,341 @@
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/book/number/all": {
+            "get": {
+                "description": "getAllNumber",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/book"
+                ],
+                "summary": "getAllNumber",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJsons"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/book/number/available": {
+            "get": {
+                "description": "GetAvailableBookNumber",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/book"
+                ],
+                "summary": "GetAvailableBookNumber",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJsons"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/book/number/rent": {
+            "get": {
+                "description": "getRentedBook",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/book"
+                ],
+                "summary": "getRentedBook",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJsons"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/all/user": {
+            "post": {
+                "description": "GetAllUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/manager"
+                ],
+                "summary": "GetAllUser",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/delete/user": {
+            "post": {
+                "description": "DeleteUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/manager"
+                ],
+                "summary": "DeleteUser",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/login": {
+            "post": {
+                "description": "login account by account and password return AccessToken",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/manager"
+                ],
+                "summary": "Login an account",
+                "parameters": [
+                    {
+                        "description": "Account Telephone",
+                        "name": "account",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "description": "Account password",
+                        "name": "password",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manager/update/user": {
+            "post": {
+                "description": "UpdateUser",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/manager"
+                ],
+                "summary": "UpdateUser",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sensor/all/non/filtrate": {
+            "get": {
+                "description": "get all sensor data nonlimit",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/sensor/"
+                ],
+                "summary": "Get all Sensor Data nonlimit nonDto",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJsons"
+                        }
+                    },
+                    "442": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJson"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/sensor/all/page": {
+            "get": {
+                "description": "get all sensor data limit",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "/api/sensor/"
+                ],
+                "summary": "Get all Sensor Data limit",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.ResponseJsons"
                         }
                     },
                     "442": {
