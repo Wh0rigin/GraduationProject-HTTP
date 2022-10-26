@@ -133,3 +133,11 @@ func GetAllSensorDataLimit(ctx *gin.Context) {
 		}, "数据查询成功")
 	}
 }
+
+func SensorDataNumberByName(ctx *gin.Context) {
+	sensorName := ctx.Param("sensorName")
+	datas := dao.GetAllSensorDataByType(common.GetDb(), sensorName)
+	response.Response(ctx, http.StatusOK, 200, gin.H{
+		"total": len(datas),
+	}, "数据查询成功")
+}

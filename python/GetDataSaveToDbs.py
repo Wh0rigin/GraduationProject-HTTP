@@ -57,14 +57,14 @@ def getData(*arg):
         temp = getSensor(arg[2],'temperature',json_dict['ResultObj']['AccessToken'])
         humi = getSensor(arg[2],'humidity', json_dict['ResultObj']['AccessToken'])
         lamp = getSensor(arg[2],'lamp', json_dict['ResultObj']['AccessToken'])
+        light = getSensor(arg[2],'light', json_dict['ResultObj']['AccessToken'])
         if buffer_time != temp["time"]:
-            print("get new temperature data:"+str(temp['value'])+",time:"+temp['time'])
-            print("get new humidity data:"+str(humi['value'])+",time:"+humi['time'])
             session.add_all(
                 [
                     Sensor_data(created_at=temp['time'],updated_at=temp['time'],sensor_type='temperature',value=temp['value']),
                     Sensor_data(created_at=humi['time'],updated_at=humi['time'],sensor_type='humidity',value=humi['value']),
-                    Sensor_data(created_at=humi['time'],updated_at=humi['time'],sensor_type='lamp',value=lamp['value'])
+                    Sensor_data(created_at=lamp['time'],updated_at=lamp['time'],sensor_type='lamp',value=lamp['value']),
+                    Sensor_data(created_at=light['time'],updated_at=light['time'],sensor_type='light',value=light['value'])
                 ]
             )
             session.commit()

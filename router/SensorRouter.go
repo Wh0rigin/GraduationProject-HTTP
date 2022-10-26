@@ -14,4 +14,6 @@ func SensorRouter(r *gin.Engine) {
 	r.GET("/api/sensor/all/non/filtrate", middleware.MangagerMiddleware(), controller.GetAllSensorDataNonFiltrate)
 	//分页
 	r.GET("/api/sensor/all/page", middleware.MangagerMiddleware(), controller.GetAllSensorDataLimit)
+
+	r.GET("/api/sensor/total/:sensorName", middleware.MangagerMiddleware(), controller.SensorDataNumberByName)
 }
