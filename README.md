@@ -51,10 +51,30 @@
 gin
 gorm
 swagger
-
 sqlalchemy
 
 
 ## API
 http://localhost:8080/swagger/index.html
 
+
+
+# 智慧图书馆部署文档
+
+## 前置部署
+---
+sql文件夹下运行gradation.sql脚本，创建数据库
+
+sql文件夹下另外的文件夹为以表为单位的脚本
+
+
+## Http服务器搭建
+---
+
+1. 安装go语言SDK
+2. 在根目录config文件夹下的yaml文件中修改自己的数据库信息
+3. 通过根目录python文件夹下的GetDataSaveToDbs.py文件获取云平台数据
+	```
+	python GetDataSaveToDbs.py
+	```
+4. 运行根目录sh文件夹下的run.bat文件或直接运行bin文件夹下的二进制文件
